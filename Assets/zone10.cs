@@ -11,11 +11,7 @@ public class zone10 : MonoBehaviour, IDragHandler, IEndDragHandler
     
     void Start()
     {
-<<<<<<< HEAD
-        print("Romain");
-=======
         print("ererer");
->>>>>>> 3fd66efa0593784b5b222cd10748710d985a8477
         initPos = transform.localPosition;
         initPos = new Vector3(initPos.x, initPos.y, 0);
         print(initPos);
