@@ -10,13 +10,13 @@ public class Zone
         /** L'état d'une cellule est donné par un booléen. */
         private Etat.EtatName etat;
         /** Artéfact caché dnas la zone*/
-        private Artefacts artefacts;
+        private Artefacts.ArtefactsName artefacts;
         /** Bool pour savoir si la zone est la zone spéciale héliport*/
         private bool heliport;
         /** Position de la zone */
         private Position position;
     
-        public Zone(Etat.EtatName etat, Position position,  Artefacts artefacts, bool heliport) {
+        public Zone(Etat.EtatName etat, Position position,  Artefacts.ArtefactsName artefacts, bool heliport) {
             this.etat = etat;
             this.artefacts = artefacts;
             this.position = position;
@@ -24,7 +24,7 @@ public class Zone
         }
     
         // second constructeur pour set autre chose que l'heliort.
-        public Zone(Etat.EtatName etat, Position position,  Artefacts artefacts) : this(etat, position, artefacts, false){
+        public Zone(Etat.EtatName etat, Position position,  Artefacts.ArtefactsName artefacts) : this(etat, position, artefacts, false){
           
         }
     
@@ -57,7 +57,7 @@ public class Zone
         /**
          * @Description geteur l'artefact
          * */
-        public Artefacts getArtefacts(){
+        public Artefacts.ArtefactsName getArtefacts(){
             return this.artefacts;
         }
         /**
@@ -70,7 +70,7 @@ public class Zone
         /**
          * @Description geteur de l'artefact pour l'update
          * */
-        public void setArtefacts(Artefacts artefacts) {
+        public void setArtefacts(Artefacts.ArtefactsName artefacts) {
             this.artefacts = artefacts;
         }
     

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tfi;
 using System.Collections;
@@ -14,13 +15,13 @@ public class Island
     /** C'est un pointeur vers player qui a un tour **/
     private Player RoundOf;
     /*Liste des Players*/
-    private readonly ArrayList listPlayers = new ArrayList();
+    private readonly List<Player> listPlayers = new List<Player> ();
     /*Liste des Artefacts*/
-    private readonly ArrayList listArtefacts = new ArrayList();
+    private readonly List<Artefacts.ArtefactsName> listArtefacts = new List<Artefacts.ArtefactsName>();
     /*Liste de la pioche*/
-    private readonly ArrayList tasCarteTresor = new ArrayList();
+    private readonly List<TresorCard.TresorCardName> tasCarteTresor = new List<TresorCard.TresorCardName>();
     /*Liste de la défausse*/
-    private ArrayList defausseCarteTresor = new ArrayList();
+    private List<TresorCard.TresorCardName> defausseCarteTresor = new List<TresorCard.TresorCardName>();
     /*Liste de la pioche Inondation*/
     private List<Zone> tasCarteInnondation = new List<Zone>();
     /*Liste de la défausse inondation*/
@@ -45,7 +46,7 @@ public class Island
         for(int i=0; i<LARGEUR; i++) {
             zones[i] = new Zone[HAUTEUR];
             for(int j=0; j<HAUTEUR; j++) {
-                zones[i][j] = new Zone(Etat.EtatName.None, new Position(i,j), Artefacts.None);
+                zones[i][j] = new Zone(Etat.EtatName.None, new Position(i,j), Artefacts.ArtefactsName.None);
             }
         }
         init();
@@ -89,16 +90,16 @@ public class Island
     * @Description On initialise le tas Inondation
      */
     private void initTasCarteInnondation(){
-        tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.None,true));
+        tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.None,true));
         for(int i = 0; i < 2; i++) {
-            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.Feu));
-            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.Eau));
-            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.Terre));
-            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.Air));
+            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.Feu));
+            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.Eau));
+            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.Terre));
+            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.Air));
         }
 
         for(int i = 0; i < 15; i++){
-            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.None));
+            tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.None));
         }
        // Collections.shuffle(tasCarteInnondation); //Pour mélanger
     }
@@ -108,4 +109,53 @@ public class Island
         return this.zones;
     }
 
+    public List<TresorCard.TresorCardName> getDefausseTresorCard()
+    {
+        return this.defausseCarteTresor;
+    }
+
+    public void addToDefausseCarteTresor(TresorCard.TresorCardName card)
+    {
+        this.defausseCarteTresor.Add(card);
+    }
+
+    public List<Artefacts.ArtefactsName> getListArtefacts()
+    {
+        return this.listArtefacts;
+    }
+
+    //Todo A implementer
+    public List<Zone> getSafeZoneArround(Zone zone)
+    {
+        List<Zone> voisins = new List<Zone>();
+        Position pos = zone.getPosition();
+        if (pos.y-1>=0)
+            voisins.Add(zones[pos.x][pos.y-1]);
+        if(pos.x-1>=0)
+            voisins.Add(zones[pos.x-1][pos.y]);
+
+        if(pos.y+1<Island.HAUTEUR)
+            voisins.Add(zones[pos.x][pos.y+1]);
+
+        if(pos.x+1<Island.LARGEUR)
+            voisins.Add(zones[pos.x+1][pos.y]);
+
+        voisins.Add(zone);
+        return voisins;
+    }
+
+    public void risingWater()
+    {
+        this.seaLevel= 1+(this.seaLevel)%11;
+        if(this.seaLevel > 7)
+            this.numberCardToPick = 5;
+        else if(this.seaLevel > 5)
+            this.numberCardToPick = 4;
+        else if(this.seaLevel > 2)
+            this.numberCardToPick = 3;
+        else
+            this.numberCardToPick = 2;
+        Console.WriteLine(seaLevel);
+        Console.WriteLine(this.numberCardToPick + " card to pick");
+    }
 }

@@ -19,7 +19,7 @@ public class grille : MonoBehaviour
     {
         Island modele = new Island();
         Zone [][] zones = modele.getZone();
-        GameObject refr = (GameObject)Instantiate(Resources.Load("rerere")); // on chope le prefab ici
+        GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
         print(refr);
         for(int i =0; i<nbLignes; i++){
             for(int j =0; j<nbColonnes; j++){
@@ -27,18 +27,20 @@ public class grille : MonoBehaviour
                     GameObject tile = (GameObject)Instantiate(refr, transform);
                     float posX = i * tileSize;
                     float posY = j * -tileSize;
+                    tile.transform.parent = transform;
                     tile.transform.localScale =new Vector3(0.3f, 0.3f, 0.3f);
                     tile.transform.position = new Vector3(posX,posY);
                 }
                 
             }
+
         }
 
         Destroy(refr);
 
         float gridW= tileSize*nbLignes;
         float gridH= tileSize*nbColonnes;
-        transform.position = new Vector2(gridW/2 + tileSize/2, gridH/2 - tileSize/2);
+        transform.position = new Vector2(0-(gridW/2 - tileSize/2), 0+(gridH/2 - tileSize/2));
         
 
     }

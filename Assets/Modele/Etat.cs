@@ -9,16 +9,18 @@ namespace Tfi
             None,Normale,Inondee,Submergee
         }
         
-        public static String GetString( Tfi.Etat.EtatName s1)
+        public static String GetString(EtatName s1)
         {
             switch (s1)
             {
-                case Tfi.Etat.EtatName.None:
-                    return "Yeah!";
-                case Tfi.Etat.EtatName.Normale:
-                    return "Okay!";
+                case EtatName.Inondee:
+                    return "Inondee";
+                case EtatName.Normale:
+                    return "Normal";
+                case EtatName.Submergee:
+                    return "Subrmergee";
                 default:
-                    return "What?!";
+                    return "None";
             }
         }
         
