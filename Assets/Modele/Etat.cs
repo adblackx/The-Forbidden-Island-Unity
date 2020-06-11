@@ -13,14 +13,29 @@ namespace Tfi
         {
             switch (s1)
             {
-                case EtatName.Inondee:
-                    return "Inondee";
                 case EtatName.Normale:
                     return "Normal";
+                case EtatName.Inondee:
+                    return "Inondee";
                 case EtatName.Submergee:
                     return "Subrmergee";
                 default:
                     return "None";
+            }
+        }
+        
+        public static Etat.EtatName nextEtat(Etat.EtatName etat){
+
+            switch (etat)
+            {
+                case EtatName.Normale:
+                    return EtatName.Inondee;
+                case EtatName.Inondee:
+                    return EtatName.Submergee;
+                case EtatName.Submergee:
+                    return EtatName.Submergee;
+                default:
+                    return EtatName.None;
             }
         }
         

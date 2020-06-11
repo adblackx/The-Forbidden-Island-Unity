@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
-public class zone10 : MonoBehaviour, IDragHandler, IEndDragHandler
+public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     // Start is called before the first frame update
 
@@ -48,10 +50,14 @@ public class zone10 : MonoBehaviour, IDragHandler, IEndDragHandler
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
             transform.localPosition = initPos;
         }
-
-
+        
     }
-    
 
-
+    public void OnMouseDown()
+    {
+        Vector3 p = transform.localPosition;
+        int x = (int) p.x;
+        int y = (int) p.y;
+        
+    }
 }

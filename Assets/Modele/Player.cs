@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Tfi
@@ -40,7 +41,6 @@ namespace Tfi
     /**
      * Prendre un artefact de l'ile
      */
-    //Todo : Là j'ai la flemme
     public void takeArtefact(){
         int compteur = 0;
         Artefacts.ArtefactsName artefacts = zone.getArtefacts();
@@ -57,6 +57,8 @@ namespace Tfi
         }
     }
 
+    
+    
     /**
      *
      * @param tas le tas de carte tresors du modele
@@ -67,7 +69,7 @@ namespace Tfi
     {
         if (tas.Count == 0)
         {
-            //Collections.shuffle(defausse); //Todo à remplacer
+            Island.Shuffle(defausse);
             tas.AddRange(defausse);
             defausse.Clear();
         }
