@@ -7,12 +7,16 @@ public class GridController : MonoBehaviour
 {
     private int nbLignes=6;
     private int nbColonnes=6;
-    private float tileSize = 1;
-
+    private float tileSize = 2f; // taille des prefabs
+    
     // Start is called before the first frame update
     void Start()
     {
-        GenerateGrid();
+           GenerateGrid();
+           GameObject o1 = GameObject.Find("Canvas");
+           Canvas  canvas =  o1.GetComponent<Canvas>(); // on chope le prefab ici
+           float h = canvas.GetComponent<RectTransform>().rect.height;
+           print(h);
     }
 
     private void GenerateGrid()
@@ -27,15 +31,18 @@ public class GridController : MonoBehaviour
                     GameObject tile = (GameObject)Instantiate(refr, transform);
                     float posX = i * tileSize;
                     float posY = -j * tileSize;
-                    tile.transform.parent = transform;
-                    tile.transform.localScale =new Vector3(0.4f, 0.4f, 0.4f);
-                    tile.transform.position = new Vector3(posX,posY);
+                    //tile.transform.parent = transform;
+                    //print("1 " +   tile.transform.localScale);
+                    //tile.transform.localScale =new Vector3(0.9f,0.9f, 1.0f);
+                    //print("2 " +   tile.transform.localScale);
+                    tile.transform.position = new Vector3(posX,posY,0);
+
                 }
                 
-            }
+            }    
 
         }
-
+        
         Destroy(refr);
 
         float gridW= tileSize*nbLignes;
@@ -43,6 +50,7 @@ public class GridController : MonoBehaviour
         transform.position = new Vector2(0-(gridW/2 - tileSize/2), 0+(gridH/2 - tileSize/2));
         
 
+        
     }
     
 

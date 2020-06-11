@@ -13,7 +13,6 @@ public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
     
     void Start()
     {
-        print("ererer");
         initPos = transform.localPosition;
         initPos = new Vector3(initPos.x, initPos.y, 0);
         print(initPos);
@@ -39,7 +38,6 @@ public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
         print(transform.position);
 
         
-
     }
     
     public void OnEndDrag(PointerEventData eventData)
