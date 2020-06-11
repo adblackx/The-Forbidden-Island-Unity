@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
-public class grille : MonoBehaviour 
+public class GridController : MonoBehaviour 
 {
     private int nbLignes=6;
     private int nbColonnes=6;
@@ -26,9 +26,9 @@ public class grille : MonoBehaviour
                 if (zones[i][j].getEtat() != Etat.EtatName.None) {
                     GameObject tile = (GameObject)Instantiate(refr, transform);
                     float posX = i * tileSize;
-                    float posY = j * -tileSize;
+                    float posY = -j * tileSize;
                     tile.transform.parent = transform;
-                    tile.transform.localScale =new Vector3(0.3f, 0.3f, 0.3f);
+                    tile.transform.localScale =new Vector3(0.4f, 0.4f, 0.4f);
                     tile.transform.position = new Vector3(posX,posY);
                 }
                 
