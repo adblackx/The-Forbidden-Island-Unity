@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelController : MonoBehaviour
 {
@@ -22,12 +23,18 @@ public class PanelController : MonoBehaviour
         {
             GameObject panel = (GameObject)Instantiate(pane, transform);
             panel.GetComponent<PanelCardController>().setPlayer(modele.GetListPlayers()[i]);
-            panel.transform.localPosition = new Vector3(0,-i*214f + 214f,0);
+            panel.transform.localPosition = new Vector3(0,214f ,0);
+            
+            Transform transformOfCard = panel.GetComponent<Transform>().Find("Icone");
+            Sprite sprite =  Resources.Load<Sprite>(modele.GetListPlayers()[i].getSpritePath());
+            transformOfCard.GetComponent<Image>().sprite = sprite;
+            
             panelTab[i] = panel;
             if(i!=0)
                 panelTab[i].SetActive(false);
         }
-        
+        GameObject.Find("PanelAllButtons").GetComponent<PanelButtonController>().setPanelController(panelTab);
+
         Destroy(pane);
 
         // ici on doit in,stancier les panels + ajouter les joueurs

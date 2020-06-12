@@ -45,5 +45,21 @@ namespace Tfi
                     return Artefacts.ArtefactsName.None;
             }
         }
+        
+        public static String getSpritePath(TresorCardName n)
+        {
+            switch(n) {
+                case TresorCardName.ClefAir:
+                    return "Image/clef_vent";
+                case TresorCardName.ClefEau:
+                    return "Image/clef_eau";
+                case TresorCardName.ClefFeu:
+                    return "Image/clef_feu";
+                case TresorCardName.ClefTerre:
+                    return "Image/clef_terre";
+                default:
+                    return "Image/clef_vide";
+                }
+        }
     }
 }
