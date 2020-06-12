@@ -33,6 +33,9 @@ public class GridController : MonoBehaviour
         modele = new Island();
         Zone [][] zones = modele.getZone();
         addPlayer("Messager");
+        addPlayer("Explorateur");
+        addPlayer("Navigateur");
+        addPlayer("Pilote");
         modele.setRoundOf(modele.GetListPlayers()[0]);
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
 //        print(refr);
