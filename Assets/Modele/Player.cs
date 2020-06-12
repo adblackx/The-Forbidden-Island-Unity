@@ -253,6 +253,14 @@ namespace Tfi
         return "Player";
     }
 
+    public int GetX()
+    {
+        return this.zone.getX();
+    }
 
+    public int GetY()
+    {
+        return this.zone.getY();
+    }
     }
 }

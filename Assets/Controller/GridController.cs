@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controller;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
@@ -31,7 +32,7 @@ public class GridController : MonoBehaviour
         print("instance modele");
         modele = new Island();
         Zone [][] zones = modele.getZone();
-        addPlayer();
+        addPlayer("Messager");
         modele.setRoundOf(modele.GetListPlayers()[0]);
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
 //        print(refr);
@@ -77,12 +78,20 @@ public class GridController : MonoBehaviour
         
     }
 
-    public void addPlayer()
+    public void addPlayer(String type)
     {
         int[] tab = modele.getRandomPoint();
         String imageURL = "/Image/messager.png";
-        Player p = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
-        modele.GetListPlayers().Add(p);
+        Player player = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(player);
+        GameObject prefabs = (GameObject) Instantiate(Resources.Load("Prefabs/Pawn"+type));
+        GameObject pawn = (GameObject)Instantiate(prefabs, transform);
+        Destroy(prefabs);
+        pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2, 0f);
+        //print("2 " +   tile.transform.localScale);
+        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,0);
+        pawn.GetComponent<PawnController>().SetPlayer(player);
+        
         //hashMap1.put("Messager",p);
         //nbJoueurs++;
     }

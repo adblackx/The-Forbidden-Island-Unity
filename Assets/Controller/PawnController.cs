@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Tfi;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Controller
@@ -6,7 +7,7 @@ namespace Controller
     public class PawnController: MonoBehaviour, IDragHandler, IEndDragHandler
     {
         private Vector3 initPos;
-        
+        private Player player;
         void Start()
         {
             initPos = transform.localPosition;
@@ -39,6 +40,11 @@ namespace Controller
                 transform.localPosition = initPos;
             }
         
+        }
+
+        public void SetPlayer(Player player)
+        {
+            this.player = player;
         }
     }
 }
