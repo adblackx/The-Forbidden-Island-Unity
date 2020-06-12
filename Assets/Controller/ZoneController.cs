@@ -1,27 +1,56 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tfi;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     // Start is called before the first frame update
 
     private Vector3 initPos;
+    private Zone zone;
+    private Etat.EtatName etat = Etat.EtatName.Normale;
     
+    Sprite sprite; // le sprite qu'on va load
+    private Image img; // image contenant le sprite
+    
+
+    public void SetZone(Zone z)
+    {
+        this.zone = z;
+    }
+    
+    public void GetZone(Zone z)
+    {
+        this.zone = z;
+    }
+
     void Start()
     {
         initPos = transform.localPosition;
         initPos = new Vector3(initPos.x, initPos.y, 0);
-        print(initPos);
+
+
     }
+
 
 
     // Update is called once per frame
     void Update()
     {
+        if (zone.getEtat() != etat){ // ici je teste si on a un changement d'état, puis si c'est le cas, alors je change d'état, et je met à jour mon sprite
+            etat = zone.getEtat();
+            sprite = Resources.Load<Sprite>(Etat.getSpritePath(etat));
+            img = GetComponent<Image>();
+            img.sprite = sprite;
+        }
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -36,6 +65,7 @@ public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
         print(transform.position);
+        print(zone.getPosition().ToString());
 
         
     }

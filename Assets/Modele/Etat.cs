@@ -39,6 +39,21 @@ namespace Tfi
             }
         }
         
+        public static String getSpritePath(Etat.EtatName etat){
+
+            switch (etat)
+            {
+                case EtatName.Normale:
+                    return "Image/normale";
+                case EtatName.Inondee:
+                    return "Image/innonde";
+                case EtatName.Submergee:
+                    return "Image/submerge";
+                default:
+                    return "Image/None";
+            }
+        }
+        
     }
 
     
