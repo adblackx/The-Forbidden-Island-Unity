@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
+public class ZoneController : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -70,16 +70,6 @@ public class ZoneController : MonoBehaviour, IDragHandler, IEndDragHandler
         
     }
     
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Vector3 mousePos = Input.mousePosition;
-        if (Camera.main != null)
-        {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.localPosition = initPos;
-        }
-        
-    }
 
     public void OnMouseDown()
     {
