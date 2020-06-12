@@ -184,7 +184,7 @@ public class Island
             }
         }
 
-
+        
         RoundOf.searchKey(this.tasCarteTresor, this.defausseCarteTresor, this);
         RoundOf.searchKey(this.tasCarteTresor, this.defausseCarteTresor, this);
 
@@ -372,6 +372,11 @@ public class Island
     {
         return this.zones;
     }
+
+    public List<Player> GetListPlayers()
+    {
+        return this.listPlayers;
+    }
     
     //Todo : A tester mais devrais melanger un Array
     public static void Shuffle<T>(IList<T> list)
@@ -390,4 +395,6 @@ public class Island
             list[n] = value;
         }
     }
+    
+    
 }
