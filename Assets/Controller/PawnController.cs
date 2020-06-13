@@ -10,6 +10,7 @@ namespace Controller
         public Vector3 initPos;
         public Player player;
         public static GameObject isBeingDragged; //Le prefab qui est dragg = 1 seul à la fois
+        private Transform startParent;
 
         void Start()
         {
@@ -20,6 +21,8 @@ namespace Controller
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            //startParent = transform.parent;
+            //transform.SetParent(transform.parent.parent);
             isBeingDragged = gameObject;
         }
 
@@ -33,7 +36,10 @@ namespace Controller
                 //print("camera");
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
                 transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = new Vector3(transform.position.x, transform.position.y,-100);
+                transform.position = new Vector3(transform.position.x, transform.position.y,100);
+                
+                print("postion : " + transform.position);
+                print("localPostion : " + transform.localPosition);
 
             }
 
@@ -46,8 +52,9 @@ namespace Controller
 
             transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
             isBeingDragged = null;
+            //transform.SetParent(startParent);
             //transform.localPosition = initPos;
-            
+
             /*
             // second version             
             transform.localPosition = new Vector3(transform.position.x, transform.position.y,-100);
@@ -77,7 +84,7 @@ namespace Controller
                 transform.localPosition = initPos;
             
             }*/
-        
+
         }
 
         public void SetPlayer(Player player)
