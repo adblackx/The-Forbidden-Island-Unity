@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controller;
 using Tfi;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ZoneController : MonoBehaviour, IDropHandler
     private Vector3 initPos;
     private Zone zone;
     private Etat.EtatName etat = Etat.EtatName.Normale;
+    private float tileSize = 150f; // taille des prefabs
     
     Sprite sprite; // le sprite qu'on va load
     private Image img; // image contenant le sprite
@@ -64,15 +66,15 @@ public class ZoneController : MonoBehaviour, IDropHandler
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
-        print(transform.position);
-        print(zone.getPosition().ToString());
+        //print(transform.position);
+        //print(zone.getPosition().ToString());
 
         
     }
 
     public void OnMouseUp()
     {
-        print("rerer");
+        //print("rerer");
     }
     
     public void OnMouseDown()
@@ -80,7 +82,7 @@ public class ZoneController : MonoBehaviour, IDropHandler
         Vector3 p = transform.localPosition;
         int x = (int) p.x;
         int y = (int) p.y;
-        print(x+" "+ y);
+        //print(x+" "+ y);
     }
 
     public void onDropOn()
@@ -99,8 +101,13 @@ public class ZoneController : MonoBehaviour, IDropHandler
     }
     
 
+    //Appeler quand le prefabs perçoit un drop
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("On drop");
+        Debug.Log("On drop : " + zone.getPosition().ToString());
+        float offsetx = PawnController.isBeingDragged.transform.parent.localPosition.x - tileSize*6; //calcul du decalage en x
+        float offsety = PawnController.isBeingDragged.transform.parent.position.y; // calcul du decalage en y
+        PawnController.isBeingDragged.transform.position = new Vector3(offsetx + (zone.getX()+1)*tileSize, offsety - (zone.getY())*tileSize,-1);
+        
     }
 }
