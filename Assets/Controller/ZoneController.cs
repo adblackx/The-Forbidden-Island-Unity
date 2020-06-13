@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class ZoneController : MonoBehaviour
+public class ZoneController : MonoBehaviour, IDropHandler
 {
     // Start is called before the first frame update
 
@@ -81,5 +81,10 @@ public class ZoneController : MonoBehaviour
         int x = (int) p.x;
         int y = (int) p.y;
         print(x+" "+ y);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("On drop");
     }
 }

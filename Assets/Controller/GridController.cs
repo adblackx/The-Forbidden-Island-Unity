@@ -32,11 +32,8 @@ public class GridController : MonoBehaviour
         print("instance modele");
         modele = new Island();
         Zone [][] zones = modele.getZone();
-        addPlayer("Messager");
-        addPlayer("Explorateur");
-        addPlayer("Navigateur");
-        addPlayer("Pilote");
-        modele.setRoundOf(modele.GetListPlayers()[0]);
+        
+        
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
 //        print(refr);
         for(int i =0; i<nbLignes; i++){
@@ -57,9 +54,14 @@ public class GridController : MonoBehaviour
             }    
 
         }
-        
         Destroy(refr);
-
+        
+        
+        //addPlayer("Explorateur");
+        //addPlayer("Navigateur");
+        //addPlayer("Pilote");
+        addPlayer("Messager");
+        modele.setRoundOf(modele.GetListPlayers()[0]);
         float gridW= tileSize*nbLignes;
         float gridH= tileSize*nbColonnes;
         transform.position = new Vector2(0-(gridW/2 - tileSize/2), 0+(gridH/2 - tileSize/2));
@@ -90,13 +92,9 @@ public class GridController : MonoBehaviour
         GameObject prefabs = (GameObject) Instantiate(Resources.Load("Prefabs/Pawn"+type));
         GameObject pawn = (GameObject)Instantiate(prefabs, transform);
         Destroy(prefabs);
-        pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2, 0f);
-        //print("2 " +   tile.transform.localScale);
-        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,0);
+        pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2,1);
+        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,1);
         pawn.GetComponent<PawnController>().SetPlayer(player);
-        
-        //hashMap1.put("Messager",p);
-        //nbJoueurs++;
     }
 
     public Island getModele()

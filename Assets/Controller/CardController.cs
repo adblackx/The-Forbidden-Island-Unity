@@ -27,8 +27,6 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         }
         //print(transform.position);
-
-
         
     }
     
