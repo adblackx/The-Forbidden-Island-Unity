@@ -258,5 +258,16 @@ namespace Tfi
         return "Image/explorateur"; // sample example me saoule pas wola
         
     }
+    
+    public int GetX()
+    {
+        return this.zone.getX();
+    }
+
+    public int GetY()
+    {
+        return this.zone.getY();
+    }
+    
     }
 }

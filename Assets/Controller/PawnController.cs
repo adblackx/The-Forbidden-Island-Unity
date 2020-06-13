@@ -26,26 +26,57 @@ namespace Controller
         public void OnDrag(PointerEventData eventData)
         {
             Vector3 mousePos = Input.mousePosition;
-            transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            transform.GetComponent<CanvasGroup>().blocksRaycasts = false; // a commentter pour l'autre méthode
         
             if (Camera.main != null)
-            {
+            { // même chose que toi donc à ne pas modifier
+                //print("camera");
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
                 transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = new Vector3(transform.position.x, transform.position.y,-100);
 
-                transform.position = new Vector3(transform.position.x, transform.position.y);
             }
-            print(transform.position);
+
 
         
         }
     
         public void OnEndDrag(PointerEventData eventData)
         {
-            
+
             transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
             isBeingDragged = null;
             //transform.localPosition = initPos;
+            
+            /*
+            // second version             
+            transform.localPosition = new Vector3(transform.position.x, transform.position.y,-100);
+
+            if (Camera.main != null)
+            {
+                Vector3 worldPosition1;
+
+                worldPosition1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                worldPosition1.z = -1 * worldPosition1.z;
+                print(-1*Vector2.up);
+                print(Vector2.up);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position,  -Vector2.up);
+                if (hit.collider != null)
+                {
+                    print(hit.collider.name);
+                    if (hit.collider.name != "Card(Clone)(Clone)")
+                    {
+                        //print(hit.collider.GetComponent<ZoneController>().GetZone().getPosition().ToString()); // ici je recupere un composant de la zaone
+                        ZoneController zc = hit.collider.GetComponent<ZoneController>();
+                        zc.onDropOn();
+                        // il suffit alors de faire ce que tu as à faire...
+                    }
+                    
+                }
+
+                transform.localPosition = initPos;
+            
+            }*/
         
         }
 

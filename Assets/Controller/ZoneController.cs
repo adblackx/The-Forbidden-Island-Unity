@@ -86,15 +86,15 @@ public class ZoneController : MonoBehaviour, IDropHandler
     }
 
     public void onDropOn()
-    {
+    {//fonction appelé par la méthode du rayCast
         print("onDropOn");
         print(GetZone().getPosition().ToString());
         
     }
     
     public void onDropOnCard(TresorCard.TresorCardName cardName)
-    {
-        print("onDropOnCard");
+    {//fonction appelé par la méthode du rayCastv des cartes
+        //print("onDropOnCard");
         print(cardName.ToString());
         print(GetZone().getPosition().ToString());
         
