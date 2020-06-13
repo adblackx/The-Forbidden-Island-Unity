@@ -60,5 +60,10 @@ namespace Tfi
             return "Pilote";
         }
         
+        public override String getSpritePath()
+        {
+            return "Image/pilote"; // sample example me saoule pas wola
+        }
+        
     }
 }

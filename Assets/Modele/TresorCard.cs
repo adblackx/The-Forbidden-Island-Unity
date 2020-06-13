@@ -57,8 +57,12 @@ namespace Tfi
                     return "Image/clef_feu";
                 case TresorCardName.ClefTerre:
                     return "Image/clef_terre";
+                case TresorCardName.Helicopter:
+                    return "Image/helico";
+                case TresorCardName.Sandbag:
+                    return "Image/sandbag";
                 default:
-                    return "Image/clef_vide";
+                    return "Image/carte_vide";
                 }
         }
     }

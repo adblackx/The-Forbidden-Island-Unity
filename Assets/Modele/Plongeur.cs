@@ -47,5 +47,11 @@ namespace Tfi
         public String toString() {
             return "Plongeur";
         }
+        
+        public override String getSpritePath()
+        {
+            return "Image/plongeur"; // sample example me saoule pas wola
+        }
+        
     }
 }

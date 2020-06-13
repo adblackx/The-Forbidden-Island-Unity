@@ -31,10 +31,7 @@ public class GridController : MonoBehaviour
         print("instance modele");
         modele = new Island();
         Zone [][] zones = modele.getZone();
-        addPlayer();
-        addPlayer();
-        addPlayer();
-        addPlayer();
+        add4Player();
         modele.setRoundOf(modele.GetListPlayers()[0]);
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
 //        print(refr);
@@ -83,9 +80,34 @@ public class GridController : MonoBehaviour
     public void addPlayer()
     {
         int[] tab = modele.getRandomPoint();
-        String imageURL = "/Image/messager.png";
+        String imageURL = "uselessParameter...";
         Player p = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
+        //hashMap1.put("Messager",p);
+        //nbJoueurs++;
+    }
+    
+    public void add4Player()
+    {
+        int[] tab = modele.getRandomPoint();
+        String imageURL = "uselessParameter...";
+        Player p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        
+        tab = modele.getRandomPoint();
+        p = new Explorateur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        
+        tab = modele.getRandomPoint();
+        p = new Plongeur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        tab = modele.getRandomPoint();
+        p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
         //hashMap1.put("Messager",p);
         //nbJoueurs++;
     }
