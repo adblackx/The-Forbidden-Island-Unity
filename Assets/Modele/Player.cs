@@ -254,9 +254,11 @@ namespace Tfi
     }
     public virtual String getSpritePath()
     {
-        return "Image/explorateur"; // sample example me saoule pas wola
-    }
 
+        return "Image/explorateur"; // sample example me saoule pas wola
+        
+    }
+    
     public int GetX()
     {
         return this.zone.getX();
@@ -266,5 +268,6 @@ namespace Tfi
     {
         return this.zone.getY();
     }
+    
     }
 }
