@@ -68,6 +68,11 @@ public class GridController : MonoBehaviour
         {
             go.GetComponent<PanelController>().SetModele(modele);
         }*/
+       
+        GameObject hand = GameObject.Find("nextRound");
+        print("trouve "+hand.name);
+        hand.GetComponent<nextRoundController>().setModele(modele);
+
     }
     
      public void buttonNextRound(){ // endroit provisoire ici on dépalcera dans un endroit ou on gérera tous les boutons si on veut

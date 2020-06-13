@@ -51,13 +51,24 @@ public class PanelButtonController : MonoBehaviour
     {
         for (int i = 0; i < panelTab.Length; i++)
         {
-            if(i==indice)
-                panelTab[i].SetActive(true);
-            else
+            panelTab[i].SetActive(true);
+
+            if (i == indice)
             {
-                panelTab[i].SetActive(false);
+                panelTab[i].layer = 0;
+                panelTab[i].GetComponent<RectTransform>().localPosition = new Vector3(panelTab[i].GetComponent<RectTransform>().localPosition.x,panelTab[i].GetComponent<RectTransform>().localPosition.y,-1);
 
             }
+            else
+            {
+                //panelTab[i].SetActive(false);
+                panelTab[i].layer = 1;
+                panelTab[i].GetComponent<RectTransform>().localPosition = new Vector3(panelTab[i].GetComponent<RectTransform>().localPosition.x,panelTab[i].GetComponent<RectTransform>().localPosition.y,1);
+                panelTab[i].GetComponent<Renderer>().enabled = false;
+
+
+            }
+
 
         }
     }

@@ -34,6 +34,20 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             initPos = new Vector3(initPos.x, initPos.y, -1);
 
         }
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,  -Vector2.up);
+        if (hit.collider.name == "ButPlayer1")
+        {
+            print(hit.collider.name);
+            
+            //print("player");
+            PanelButtonController pbc = hit.collider.transform.parent.transform.GetComponent<PanelButtonController>();
+            pbc.onButtonClickP0();
+            print(pbc);
+        }
+
+
+        
         //print(transform.position);    
 
 
@@ -56,7 +70,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             if (hit.collider != null)
             {
                 print(hit.collider.name);
-                if (hit.collider.name != "Card(Clone)(Clone)")
+                if (hit.collider.name == "ZoneNormal(Clone)(Clone)")
                 {
                     //print(hit.collider.GetComponent<ZoneController>().GetZone().getPosition().ToString()); // ici je recupere un composant de la zaone
                     ZoneController zc = hit.collider.GetComponent<ZoneController>();
