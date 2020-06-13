@@ -55,7 +55,6 @@ public class GridController : MonoBehaviour
         }
         
         Destroy(refr);
-
         add4Player();
         modele.setRoundOf(modele.GetListPlayers()[0]);
         
@@ -91,16 +90,20 @@ public class GridController : MonoBehaviour
         GameObject pawn = (GameObject)Instantiate(prefabs, transform);
         Destroy(prefabs);
         pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2,1);
-        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,-1);
+        
+        Transform originalParent = pawn.transform.parent;
+        pawn.transform.SetParent(transform.parent.parent); //on change le parent pour avoir GridBackground en parent mieux pour calcul des coordonnées des pions
+        //formule pour trouver les coord
+        pawn.transform.localPosition = new Vector3(-tileSize*3  + player.getZone().getX()*tileSize + tileSize*0.25f, tileSize*3 - (player.getZone().getY())*tileSize - tileSize*0.25f,-1);
+        //pawn.transform.SetParent(originalParent);
+        //pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,-1);
         pawn.GetComponent<PawnController>().SetPlayer(player);
-        //hashMap1.put("Messager",p);
-        //nbJoueurs++;
     }
     
     public void add4Player()
     {
         int[] tab = modele.getRandomPoint();
-        String imageURL = "uselessParameter...";
+        String imageURL = "uselessParameter..."; //On Pourrait peut être modifier pour passer le prefabs si besoin
         Player p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
