@@ -766,8 +766,8 @@ GameObject:
   - component: {fileID: 865575294}
   - component: {fileID: 865575293}
   - component: {fileID: 865575292}
-  - component: {fileID: 865575291}
   - component: {fileID: 865575295}
+  - component: {fileID: 865575291}
   m_Layer: 5
   m_Name: Panel(Canvas)
   m_TagString: Player

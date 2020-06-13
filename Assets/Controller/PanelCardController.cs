@@ -17,7 +17,7 @@ public class PanelCardController : MonoBehaviour
         for (int i = 0; i<5; i++ )
         {
             GameObject card = (GameObject)Instantiate(refr, transform);
-            card.transform.position =new Vector3(360+(110)*i ,260f, 0f);
+            card.transform.position =new Vector3(360+(110)*i ,260f, -1f);
             listCard[i] = card;
         }
         Destroy(refr);

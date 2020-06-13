@@ -26,9 +26,9 @@ public class ZoneController : MonoBehaviour
         this.zone = z;
     }
     
-    public void GetZone(Zone z)
+    public Zone GetZone()
     {
-        this.zone = z;
+        return this.zone ;
     }
 
     void Start()
@@ -69,13 +69,17 @@ public class ZoneController : MonoBehaviour
 
         
     }
-    
 
+    public void OnMouseUp()
+    {
+        print("rerer");
+    }
+    
     public void OnMouseDown()
     {
         Vector3 p = transform.localPosition;
         int x = (int) p.x;
         int y = (int) p.y;
-        
+        print(x+" "+ y);
     }
 }
