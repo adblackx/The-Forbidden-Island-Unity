@@ -48,6 +48,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             if (hit.collider != null)
             {
                 print(hit.collider.name);
+                if(hit.collider.name!="Card(Clone)(Clone)")
                 print(hit.collider.GetComponent<ZoneController>().GetZone().getPosition().ToString()); // ici je recupere un composant de la zaone
                 // il suffit alors de faire ce que tu as à faire...
             }
