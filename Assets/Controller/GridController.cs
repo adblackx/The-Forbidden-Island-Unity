@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controller;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
@@ -77,12 +78,14 @@ public class GridController : MonoBehaviour
         
     }
 
-    public void addPlayer()
+    public void addPlayerPrefabs(Player player)
     {
-        int[] tab = modele.getRandomPoint();
-        String imageURL = "uselessParameter...";
-        Player p = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
-        modele.GetListPlayers().Add(p);
+        GameObject prefabs = (GameObject) Instantiate(Resources.Load("Prefabs/Pawn"+player.toString()));
+        GameObject pawn = (GameObject)Instantiate(prefabs, transform);
+        Destroy(prefabs);
+        pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2,1);
+        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,1);
+        pawn.GetComponent<PawnController>().SetPlayer(player);
         //hashMap1.put("Messager",p);
         //nbJoueurs++;
     }
@@ -93,21 +96,22 @@ public class GridController : MonoBehaviour
         String imageURL = "uselessParameter...";
         Player p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
-        
+        addPlayerPrefabs(p);
         
         tab = modele.getRandomPoint();
         p = new Explorateur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
-        
+        addPlayerPrefabs(p);
         
         tab = modele.getRandomPoint();
         p = new Plongeur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
+        addPlayerPrefabs(p);
         
         tab = modele.getRandomPoint();
         p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
-        
+        addPlayerPrefabs(p);
         //hashMap1.put("Messager",p);
         //nbJoueurs++;
     }

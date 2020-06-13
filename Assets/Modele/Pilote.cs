@@ -56,7 +56,7 @@ namespace Tfi
      * Renvoie le role sous forme de chaine de caractère
      * @return
      */
-        public String toString() {
+        public override String toString() {
             return "Pilote";
         }
         
