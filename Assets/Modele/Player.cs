@@ -252,11 +252,9 @@ namespace Tfi
     public String toString(){
         return "Player";
     }
-    public String getSpritePath()
+    public virtual String getSpritePath()
     {
-
         return "Image/explorateur"; // sample example me saoule pas wola
-        
     }
 
     public int GetX()

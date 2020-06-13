@@ -83,6 +83,22 @@ public class ZoneController : MonoBehaviour, IDropHandler
         print(x+" "+ y);
     }
 
+    public void onDropOn()
+    {
+        print("onDropOn");
+        print(GetZone().getPosition().ToString());
+        
+    }
+    
+    public void onDropOnCard(TresorCard.TresorCardName cardName)
+    {
+        print("onDropOnCard");
+        print(cardName.ToString());
+        print(GetZone().getPosition().ToString());
+        
+    }
+    
+
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("On drop");

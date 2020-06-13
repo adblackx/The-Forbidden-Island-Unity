@@ -31,5 +31,10 @@ namespace Tfi
         public String toString() {
             return "Ingenieur";
         }
+        
+        public override String getSpritePath()
+        {
+            return "Image/ingenieur"; // sample example me saoule pas wola
+        }
     }
 }

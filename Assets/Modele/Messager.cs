@@ -27,5 +27,10 @@ namespace Tfi
         public String toString() {
             return "Messager";
         }
+        
+        public override String getSpritePath()
+        {
+            return "Image/messager"; // sample example me saoule pas wola
+        }
     }
 }

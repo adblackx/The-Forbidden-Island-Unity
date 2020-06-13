@@ -67,5 +67,10 @@ namespace Tfi
         public String toString() {
             return "Explorateur";
         }
+        
+        public override String getSpritePath()
+        {
+            return "Image/explorateur"; // sample example me saoule pas wola
+        }
     }
 }

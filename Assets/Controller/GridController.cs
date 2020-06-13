@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Controller;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
@@ -32,8 +31,8 @@ public class GridController : MonoBehaviour
         print("instance modele");
         modele = new Island();
         Zone [][] zones = modele.getZone();
-        
-        
+        add4Player();
+        modele.setRoundOf(modele.GetListPlayers()[0]);
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
 //        print(refr);
         for(int i =0; i<nbLignes; i++){
@@ -54,14 +53,9 @@ public class GridController : MonoBehaviour
             }    
 
         }
+        
         Destroy(refr);
-        
-        
-        //addPlayer("Explorateur");
-        //addPlayer("Navigateur");
-        //addPlayer("Pilote");
-        addPlayer("Messager");
-        modele.setRoundOf(modele.GetListPlayers()[0]);
+
         float gridW= tileSize*nbLignes;
         float gridH= tileSize*nbColonnes;
         transform.position = new Vector2(0-(gridW/2 - tileSize/2), 0+(gridH/2 - tileSize/2));
@@ -83,18 +77,39 @@ public class GridController : MonoBehaviour
         
     }
 
-    public void addPlayer(String type)
+    public void addPlayer()
     {
         int[] tab = modele.getRandomPoint();
-        String imageURL = "/Image/messager.png";
-        Player player = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
-        modele.GetListPlayers().Add(player);
-        GameObject prefabs = (GameObject) Instantiate(Resources.Load("Prefabs/Pawn"+type));
-        GameObject pawn = (GameObject)Instantiate(prefabs, transform);
-        Destroy(prefabs);
-        pawn.transform.localScale = new Vector3(tileSize/2,tileSize/2,1);
-        pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,1);
-        pawn.GetComponent<PawnController>().SetPlayer(player);
+        String imageURL = "uselessParameter...";
+        Player p = new Player(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        //hashMap1.put("Messager",p);
+        //nbJoueurs++;
+    }
+    
+    public void add4Player()
+    {
+        int[] tab = modele.getRandomPoint();
+        String imageURL = "uselessParameter...";
+        Player p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        
+        tab = modele.getRandomPoint();
+        p = new Explorateur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        
+        tab = modele.getRandomPoint();
+        p = new Plongeur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        tab = modele.getRandomPoint();
+        p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        modele.GetListPlayers().Add(p);
+        
+        //hashMap1.put("Messager",p);
+        //nbJoueurs++;
     }
 
     public Island getModele()

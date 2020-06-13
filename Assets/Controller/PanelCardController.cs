@@ -35,6 +35,8 @@ public class PanelCardController : MonoBehaviour
                 Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(c));
                 Transform transformOfCard = listCard[i].GetComponent<Transform>().Find("CardObject");
                 transformOfCard.GetComponent<Image>().sprite = sprite;
+                listCard[i].GetComponent<CardController>().SetCardName(c);
+
             }
         }
        // print(p.getCards().Count);
