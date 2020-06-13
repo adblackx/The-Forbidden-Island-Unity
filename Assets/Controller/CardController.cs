@@ -34,7 +34,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             initPos = new Vector3(initPos.x, initPos.y, -1);
 
         }
-        //print(transform.position);
+        //print(transform.position);    
 
 
         
@@ -52,7 +52,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
             worldPosition1.z = -1 * worldPosition1.z;
             print(-1*Vector2.up);
             print(Vector2.up);
-            RaycastHit2D hit = Physics2D.Raycast(worldPosition1,  Vector2.up);
+            RaycastHit2D hit = Physics2D.Raycast(worldPosition1,  -Vector2.up);
             if (hit.collider != null)
             {
                 print(hit.collider.name);
@@ -64,6 +64,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
                     zc.onDropOnCard(cardName);
                     // il suffit alors de faire ce que tu as à faire...
                 }
+                    
             }
 
             transform.localPosition = initPos;
