@@ -113,6 +113,7 @@ public class ZoneController : MonoBehaviour
         if(listZones.Contains(zone) && player.canAct() && zone.isFlooded()){ // on fait le drain water ici
             player.drainWaterZone(zone);
             player.addAction();
+            //Update();
         }
         else
             print("Mouvement interdit");
