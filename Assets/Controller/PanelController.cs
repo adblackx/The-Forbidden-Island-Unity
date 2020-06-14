@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,16 +31,51 @@ public class PanelController : MonoBehaviour
             transformOfCard.GetComponent<Image>().sprite = sprite;
             
             panelTab[i] = panel;
+            
+
+            String tag = "ButPlayer" + (i+1);
+            GameObject hand = GameObject.Find(tag);
+            print("trouve " + tag +" "+ hand.name);
+            hand.transform.GetChild(0).GetComponent<Text>().text = modele.GetListPlayers()[i].toString();
+            
             if(i!=0)
-                panelTab[i].SetActive(false);
+                panelTab[i].SetActive(true);
         }
+        // TODO CACHER LES BOUTONS EN TROP QUAND ON AURA MOINS DE 4 JOUEURS, EASY A FAIRE MAIS JE VEUXC ME REPOSER WOLA ++
+        
+        
         GameObject.Find("PanelAllButtons").GetComponent<PanelButtonController>().setPanelController(panelTab);
 
         Destroy(pane);
+        
+       /* GameObject hand = GameObject.Find("ButPlayer1");
+        print("trouve " + hand.name);
+        hand.transform.GetChild(0).GetComponent<Text>().text = modele.GetListPlayers()[0].toString();
+
+        for (int i = 0; i < 4; i++)
+        {
+            String tag = "ButPlayer" + (i+1);
+            hand = GameObject.Find(tag);
+            print("trouve " + tag +" "+ hand.name);
+            hand.transform.GetChild(0).GetComponent<Text>().text = modele.GetListPlayers()[i].toString();
+        }*/
+       
+       /*GameObject hand = GameObject.Find("ButPlayer1");
+        hand.transform.GetChild(0).GetComponent<Text>().text = modele.GetListPlayers()[0].toString();
+        print("trouve "+hand.name);*/
+        
+        /*hand.transform.GetChild(0).GetComponent<Text>().text = modele.GetListPlayers()[0].toString();
+        print("trouve "+hand.name);*/
 
         // ici on doit in,stancier les panels + ajouter les joueurs
-        
+
     }
+    
+    public void setModele(Island modele)
+    {
+        this.modele = modele;
+    }
+    
 
     // Update is called once per frame
     void Update()

@@ -72,6 +72,9 @@ public class GridController : MonoBehaviour
         print("trouve "+hand.name);
         hand.GetComponent<nextRoundController>().setModele(modele);
 
+        hand = GameObject.Find("Panel(Canvas)");
+        print("trouve "+hand.name);
+        hand.GetComponent<PanelController>().setModele(modele);
     }
     
      public void buttonNextRound(){ // endroit provisoire ici on dépalcera dans un endroit ou on gérera tous les boutons si on veut
