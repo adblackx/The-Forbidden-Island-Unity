@@ -12,7 +12,7 @@ namespace Tfi
         /**
      * @return zone ou le joueur peut se depalcer
      */
-        public List<Zone> zonesSafeToMove() {
+        public override List<Zone> zonesSafeToMove() {
             List<Zone> zonesReachable = new List<Zone>();
             searchRoad(zonesReachable, this.zone);
             zonesReachable.AddRange(base.zonesSafeToMove());

@@ -100,17 +100,5 @@ public class ZoneController : MonoBehaviour
         
     }
     
-
-    //Appeler quand le prefabs perçoit un drop
-    /*public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("On drop : " + zone.getPosition().ToString());
-        float offsetx = PawnController.isBeingDragged.transform.parent.localPosition.x - tileSize*6; //calcul du decalage en x
-        float offsety = PawnController.isBeingDragged.transform.parent.position.y; // calcul du decalage en y
-        //PawnController.isBeingDragged.transform.position = new Vector3(offsetx + (zone.getX()+1)*tileSize, offsety - (zone.getY())*tileSize,-1);
-        GameObject myPawn = PawnController.isBeingDragged;
-
-        PawnController.isBeingDragged.transform.localPosition = new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f, tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f,-1);
-        
-    }*/
+    
 }

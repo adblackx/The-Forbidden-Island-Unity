@@ -9,7 +9,7 @@ namespace Tfi
         {
         }
         
-        public List<Zone> zonesSafeToMove(){
+        public override List<Zone> zonesSafeToMove(){
             Position pos = base.zone.getPosition();
             List<Zone> zonesSafe = new List<Zone>();
             Zone [][] zones = modele.getGrille();

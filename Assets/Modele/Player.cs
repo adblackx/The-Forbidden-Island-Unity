@@ -26,7 +26,7 @@ namespace Tfi
      * Deplace le joueur
      * @param z la zone ou le joueur
      */
-    public void movePlayer(Zone z){
+    public virtual void movePlayer(Zone z){
         this.zone = z;
     }
 
@@ -34,7 +34,7 @@ namespace Tfi
      * Depalce le joeur
      * @param z la zone a assécher
      */
-    public void drainWaterZone(Zone z){
+    public virtual void drainWaterZone(Zone z){
         z.setEtat(Etat.EtatName.Normale);
     }
 
@@ -65,7 +65,7 @@ namespace Tfi
      * @param defausse defausse carte tresor du modele
      * @param island modele
      */
-    public void searchKey(List<TresorCard.TresorCardName> tas, List<TresorCard.TresorCardName> defausse, Island island)
+    public virtual void searchKey(List<TresorCard.TresorCardName> tas, List<TresorCard.TresorCardName> defausse, Island island)
     {
         if (tas.Count == 0)
         {
@@ -177,7 +177,7 @@ namespace Tfi
     /**
      * @return une liste de zone sure où le joueur peut se deplacer
      */
-    public List<Zone> zonesSafeToMove(){
+    public virtual List<Zone> zonesSafeToMove(){
         Position pos = zone.getPosition();
         List<Zone> zonesSafe = modele.getSafeZoneArround(this.zone);
         zonesSafe.Remove(this.zone);
@@ -201,7 +201,7 @@ namespace Tfi
      * @param card carte à donner
      * @param player joueur qui reçoit la carte
      */
-    public void giveCard(TresorCard.TresorCardName card, Player player){
+    public virtual void giveCard(TresorCard.TresorCardName card, Player player){
         if(player.getZone() == this.zone) {
             this.removeCard(card);
             this.addAction();
@@ -257,6 +257,11 @@ namespace Tfi
 
         return "Image/explorateur"; // sample example me saoule pas wola
         
+    }
+
+    public Island GetModele()
+    {
+        return this.modele;
     }
     
     public int GetX()

@@ -11,7 +11,7 @@ public class GridController : MonoBehaviour
 {
     private int nbLignes=6;
     private int nbColonnes=6;
-    private float tileSize = 150f; // taille des prefabs
+    public static float tileSize = 150f; // taille des prefabs
     private Island modele;
     //public GameObject Panel;
 
@@ -97,7 +97,8 @@ public class GridController : MonoBehaviour
         Transform originalParent = pawn.transform.parent;
         pawn.transform.SetParent(transform.parent.parent); //on change le parent pour avoir GridBackground en parent mieux pour calcul des coordonnées des pions
         //formule pour trouver les coord
-        pawn.transform.localPosition = new Vector3(-tileSize*3  + player.getZone().getX()*tileSize + tileSize*0.25f, tileSize*3 - (player.getZone().getY())*tileSize - tileSize*0.25f,-1);
+        pawn.transform.localPosition = new Vector3(-tileSize*3  + player.getZone().getX()*tileSize + tileSize*0.25f, 
+                                                    tileSize*3 - (player.getZone().getY())*tileSize - tileSize*0.25f,-1);
         //pawn.transform.SetParent(originalParent);
         //pawn.transform.position = new Vector3(player.GetX()*tileSize-386*2,-player.GetY()*tileSize,-1);
         pawn.GetComponent<PawnController>().SetPlayer(player);

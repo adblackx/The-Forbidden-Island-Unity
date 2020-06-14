@@ -17,7 +17,7 @@ namespace Tfi
      *
      * @param z la zone a assécher
      */
-        public void drainWaterZone(Zone z) {
+        public override void drainWaterZone(Zone z) {
             this.nbDrain++;
             base.drainWaterZone(z);
             if(nbDrain%2 == 0)

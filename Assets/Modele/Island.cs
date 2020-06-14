@@ -206,6 +206,8 @@ public class Island
     public void setRoundOf(Player p)
     {
         this.RoundOf = p;
+        p.resetNbActionRestant();
+        
     }
 
     public Player getRoundOf()
@@ -395,6 +397,11 @@ public class Island
             list[n] = value;
         }
     }
-    
-    
+
+    public bool isMovable(Player player)
+    {
+        return getRoundOf().Equals(player) || typeof(Navigateur).IsInstanceOfType(getRoundOf());
+    }
+
+
 }

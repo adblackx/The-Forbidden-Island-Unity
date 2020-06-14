@@ -13,7 +13,7 @@ namespace Tfi
      * @param card carte à donner
      * @param player joueur qui reçoit la carte
      */
-        public void giveCard(TresorCard.TresorCardName card, Player player) {
+        public override void giveCard(TresorCard.TresorCardName card, Player player) {
             this.removeCard(card);
             this.addAction();
             player.setCard(card);

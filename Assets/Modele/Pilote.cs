@@ -16,7 +16,7 @@ namespace Tfi
      * Si la capacité spéciale du joueur est actif les zones où il peut se depalcer différents
      * @return zones où peut se rendre le joueur
      */
-        public List<Zone> zonesSafeToMove() {
+        public override List<Zone> zonesSafeToMove() {
             if(canFly){
                 return modele.getSafeZones();
             }else
@@ -38,14 +38,14 @@ namespace Tfi
         /**
      * @param z la zone ou le joueur
      */
-        public void movePlayer(Zone z) {
+        public override void movePlayer(Zone z) {
             if(isFlying(z))
                 this.canFly = false; //Si le mouvement est distant on empeche d'utiliser une seconde fois le vol
             base.movePlayer(z);
         }
 
         /**On le réécrit pour remettre l'attribut canFly à 0 pour le prochain tour**/
-        public void searchKey(List<TresorCard.TresorCardName> tas, List<TresorCard.TresorCardName> defausse, Island island) {
+        public override void searchKey(List<TresorCard.TresorCardName> tas, List<TresorCard.TresorCardName> defausse, Island island) {
             base.searchKey(tas, defausse, island);
             this.canFly = true;  //On remet canFly à jour
         }
