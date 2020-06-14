@@ -35,6 +35,14 @@ namespace Tfi
             return zonesSafe;
         }
 
+        public override List<Zone> zonesDrainable()
+        {
+            List<Zone> listzones = zonesSafeToMove();
+            if(this.zone.isSafe())    
+                listzones.Add(this.zone);
+            return listzones;
+        }
+
 
 
         public static int getMin(int d){

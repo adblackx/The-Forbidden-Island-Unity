@@ -18,11 +18,16 @@ public class ZoneController : MonoBehaviour
     private Zone zone;
     private Etat.EtatName etat = Etat.EtatName.Normale;
     private float tileSize = 150f; // taille des prefabs
+    private Island modele;
     
     Sprite sprite; // le sprite qu'on va load
     private Image img; // image contenant le sprite
-    
 
+
+    public void SetModele(Island modele)
+    {
+        this.modele = modele;
+    }
     public void SetZone(Zone z)
     {
         this.zone = z;
@@ -79,10 +84,15 @@ public class ZoneController : MonoBehaviour
     
     public void OnMouseDown()
     {
-        Vector3 p = transform.localPosition;
-        int x = (int) p.x;
-        int y = (int) p.y;
-        //print(x+" "+ y);
+        Player player = modele.getRoundOf();
+
+        List<Zone> listZones = player.zonesDrainable();
+        if(listZones.Contains(zone) && player.canAct() && zone.isFlooded()){ // on fait le drain water ici
+            player.drainWaterZone(zone);
+            player.addAction();
+        }
+        else
+            print("Mouvement interdit");
     }
 
     public void onDropOn()

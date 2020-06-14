@@ -188,7 +188,7 @@ namespace Tfi
     /**
      * @return une liste de zone innondé que le joueur peut assecher
      */
-    public List<Zone> zonesDrainable(){
+    public virtual List<Zone> zonesDrainable(){
         List<Zone> zones = modele.getSafeZoneArround(this.zone);
         if(this.zone.isSafe())
             zones.Add(this.zone);

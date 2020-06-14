@@ -47,6 +47,7 @@ public class GridController : MonoBehaviour
                     //print("2 " +   tile.transform.localScale);
                     tile.transform.position = new Vector3(posX-386*2,posY,0);
                     tile.GetComponent<ZoneController>().SetZone(modele.getZone()[i][j]);
+                    tile.GetComponent<ZoneController>().SetModele(modele);
 
                 }
                 
