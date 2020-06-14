@@ -94,6 +94,8 @@ namespace Controller
                 }
                     
             }
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y,-1);
+
 
         }
         

@@ -58,6 +58,23 @@ public class ZoneController : MonoBehaviour
             img.sprite = sprite;
         }
 
+
+        /*if (Input.GetMouseButtonDown(0))
+        { // finalement inutile grâce au boxcollider
+            print("click");
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.name == "MyObjectName")
+                {
+                    print("My object is clicked by mouse");
+                }
+            }
+        }*/
+
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -84,6 +101,12 @@ public class ZoneController : MonoBehaviour
     
     public void OnMouseDown()
     {
+        // finalement inutile grâce au boxcollider
+        /*RaycastHit2D hit = Physics2D.Raycast(transform.position,  Vector2.up);
+        
+        print(hit.collider.name);*/
+        
+        print("onMouseDown");
         Player player = modele.getRoundOf();
 
         List<Zone> listZones = player.zonesDrainable();
