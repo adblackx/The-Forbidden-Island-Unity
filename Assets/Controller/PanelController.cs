@@ -9,7 +9,7 @@ public class PanelController : MonoBehaviour
     private Island modele;
 
     public GameObject grille;
-    private GameObject[] panelTab= new GameObject[4];
+    private GameObject[] panelTab;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +20,12 @@ public class PanelController : MonoBehaviour
         pane.GetComponent<PanelCardController>().SetModele(modele);
         print(modele);
         int lenght = modele.GetListPlayers().Count;
+        panelTab = new GameObject[lenght];
         for (int i = 0; i < lenght ; i++)
         {
             GameObject panel = (GameObject)Instantiate(pane, transform);
             panel.GetComponent<PanelCardController>().setPlayer(modele.GetListPlayers()[i]);
+            panel.GetComponent<PanelCardController>().setInitPos( new Vector3(0,214f ,0));
             panel.transform.localPosition = new Vector3(0,214f ,0);
             
             Transform transformOfCard = panel.GetComponent<Transform>().Find("Icone");

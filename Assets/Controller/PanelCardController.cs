@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class PanelCardController : MonoBehaviour
 {
     private Island modele;
-    private Tfi.Player p;
+    public Tfi.Player p;
     private GameObject[] listCard;
+
+    public Vector3 initPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +20,23 @@ public class PanelCardController : MonoBehaviour
         {
             GameObject card = (GameObject)Instantiate(refr, transform);
             card.transform.position =new Vector3(360+(110)*i ,260f, -1f);
+            card.GetComponent<CardController>().setPlayer(p);
             listCard[i] = card;
         }
         Destroy(refr);
         
     }
+
+    public void setInitPos(Vector3 p)
+    {
+        initPos = p;
+    }
+
+    public void setToInitPos()
+    {
+        transform.localPosition = initPos;
+    }
+    
 
     // Update is called once per frame
     void Update()
@@ -42,7 +56,7 @@ public class PanelCardController : MonoBehaviour
        // print(p.getCards().Count);
 
     }
-    
+
 
     public void SetModele(Island modele)
     {

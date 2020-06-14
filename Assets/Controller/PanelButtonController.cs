@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PanelButtonController : MonoBehaviour
 {
     private Island modele;
-    private GameObject[] panelTab;
+    public GameObject[] panelTab;
+    public int panelActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,30 +31,67 @@ public class PanelButtonController : MonoBehaviour
     {
         print("click p0");
         hideExcept(0);
+        panelActive = 0;
 
     }
     public void onButtonClickP1()
     {
         print("click p1");
         hideExcept(1);
-
+        panelActive = 1;
     }
     public void onButtonClickP2()
     {
         print("click p2");
         hideExcept(2);
-
+        panelActive = 2;
     }
     public void onButtonClickP3()
     {
         print("click p3");
         hideExcept(3);
-
+        panelActive = 3;
     }
     
     public void setPanelController(GameObject[] panelTab)
     {
         this.panelTab = panelTab;
+    }
+
+    public void setPanelActive(int panelActive)
+    {
+        this.panelActive = panelActive;
+    }
+
+    public void showOtherPanel(int indice)
+    {
+        for (int i = 0; i < panelTab.Length; i++)
+        {
+            if (i != indice && i != panelActive)
+            {
+                panelTab[i].GetComponent<PanelCardController>().setToInitPos();
+                panelTab[i].SetActive(false);
+            }
+        }
+        panelTab[indice].transform.localPosition = new Vector3(panelTab[indice].transform.localPosition.x,
+            0,
+            1);
+
+        panelTab[indice].SetActive(true);
+    }
+
+    public void showPanel()
+    {
+        for (int i = 0; i < panelTab.Length; i++)
+        {
+            
+            panelTab[i].GetComponent<PanelCardController>().setToInitPos();
+            panelTab[i].SetActive(false);
+            
+        }
+        
+        panelTab[panelActive].SetActive(true);
+
     }
 
     public void hideExcept(int indice)
@@ -81,6 +119,8 @@ public class PanelButtonController : MonoBehaviour
 
 
         }
+
+        panelActive = indice;
     }
     
 }
