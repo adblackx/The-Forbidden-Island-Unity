@@ -107,7 +107,7 @@ public class GridController : MonoBehaviour
     {
         int[] tab = modele.getRandomPoint();
         String imageURL = "uselessParameter..."; //On Pourrait peut être modifier pour passer le prefabs si besoin
-        Player p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        Player p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
         
@@ -122,7 +122,7 @@ public class GridController : MonoBehaviour
         addPlayerPrefabs(p);
         
         tab = modele.getRandomPoint();
-        p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
         //hashMap1.put("Messager",p);

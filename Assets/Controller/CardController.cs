@@ -58,7 +58,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
     {
         Vector3 worldPosition1;
         //Vector3 mousePos = Input.mousePosition;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 1); // important pour detecter la zone
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1); // important pour detecter la zone
 
         if (Camera.main != null)
         {

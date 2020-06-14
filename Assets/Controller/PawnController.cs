@@ -29,7 +29,7 @@ namespace Controller
         public void OnDrag(PointerEventData eventData)
         {
             Vector3 mousePos = Input.mousePosition;
-            transform.GetComponent<CanvasGroup>().blocksRaycasts = false; // a commentter pour l'autre méthode
+            //transform.GetComponent<CanvasGroup>().blocksRaycasts = false; // a commentter pour l'autre méthode
         
             if (Camera.main != null)
             { // même chose que toi donc à ne pas modifier
@@ -38,8 +38,8 @@ namespace Controller
                 transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 transform.position = new Vector3(transform.position.x, transform.position.y,100);
                 
-                print("postion : " + transform.position);
-                print("localPostion : " + transform.localPosition);
+                //print("postion : " + transform.position);
+                //print("localPostion : " + transform.localPosition);
 
             }
 
@@ -50,14 +50,14 @@ namespace Controller
         public void OnEndDrag(PointerEventData eventData)
         {
 
-            transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
             isBeingDragged = null;
             //transform.SetParent(startParent);
             //transform.localPosition = initPos;
 
-            /*
+            
             // second version             
-            transform.localPosition = new Vector3(transform.position.x, transform.position.y,-100);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y,-100);
 
             if (Camera.main != null)
             {
@@ -65,8 +65,8 @@ namespace Controller
 
                 worldPosition1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 worldPosition1.z = -1 * worldPosition1.z;
-                print(-1*Vector2.up);
-                print(Vector2.up);
+                //print(-1*Vector2.up);
+                //print(Vector2.up);
                 RaycastHit2D hit = Physics2D.Raycast(transform.position,  -Vector2.up);
                 if (hit.collider != null)
                 {
@@ -83,7 +83,7 @@ namespace Controller
 
                 transform.localPosition = initPos;
             
-            }*/
+            }
 
         }
 

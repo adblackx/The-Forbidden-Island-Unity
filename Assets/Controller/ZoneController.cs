@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class ZoneController : MonoBehaviour, IDropHandler
+public class ZoneController : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -102,7 +102,7 @@ public class ZoneController : MonoBehaviour, IDropHandler
     
 
     //Appeler quand le prefabs perçoit un drop
-    public void OnDrop(PointerEventData eventData)
+    /*public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("On drop : " + zone.getPosition().ToString());
         float offsetx = PawnController.isBeingDragged.transform.parent.localPosition.x - tileSize*6; //calcul du decalage en x
@@ -112,5 +112,5 @@ public class ZoneController : MonoBehaviour, IDropHandler
 
         PawnController.isBeingDragged.transform.localPosition = new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f, tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f,-1);
         
-    }
+    }*/
 }
