@@ -44,7 +44,7 @@ namespace Tfi
             switch (etat)
             {
                 case EtatName.Normale:
-                    return "Image/normale";
+                    return "Image/normal";
                 case EtatName.Inondee:
                     return "Image/innonde";
                 case EtatName.Submergee:

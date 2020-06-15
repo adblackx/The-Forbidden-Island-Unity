@@ -107,28 +107,25 @@ public class GridController : MonoBehaviour
     
     public void add4Player()
     {
-        int[] tab = modele.getRandomPoint();
+        List<Zone> safeZones = modele.GetRandomSafeZone(4);
+        
         String imageURL = "uselessParameter..."; //On Pourrait peut être modifier pour passer le prefabs si besoin
-        Player p = new Ingenieur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        Player p = new Ingenieur(safeZones[0],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
         
-        tab = modele.getRandomPoint();
-        p = new Explorateur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        p = new Explorateur(safeZones[1],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
         
-        tab = modele.getRandomPoint();
-        p = new Plongeur(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        p = new Plongeur(safeZones[2],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
         
-        tab = modele.getRandomPoint();
-        p = new Messager(modele.getGrille()[tab[0]][tab[1]],imageURL, modele);
+        p = new Messager(safeZones[3],imageURL, modele);
         modele.GetListPlayers().Add(p);
         addPlayerPrefabs(p);
-        //hashMap1.put("Messager",p);
-        //nbJoueurs++;
+
     }
 
     public Island getModele()
