@@ -273,16 +273,21 @@ public class Island
     {
         List<Zone> voisins = new List<Zone>();
         Position pos = zone.getPosition();
+        
         if (pos.y-1>=0)
-            voisins.Add(zones[pos.x][pos.y-1]);
+            if(zones[pos.x][pos.y-1].isSafe())
+                voisins.Add(zones[pos.x][pos.y-1]);
         if(pos.x-1>=0)
-            voisins.Add(zones[pos.x-1][pos.y]);
+            if(zones[pos.x-1][pos.y].isSafe())
+                voisins.Add(zones[pos.x-1][pos.y]);
 
         if(pos.y+1<Island.HAUTEUR)
-            voisins.Add(zones[pos.x][pos.y+1]);
+            if(zones[pos.x][pos.y+1].isSafe())
+                voisins.Add(zones[pos.x][pos.y+1]);
 
         if(pos.x+1<Island.LARGEUR)
-            voisins.Add(zones[pos.x+1][pos.y]);
+            if(zones[pos.x+1][pos.y].isSafe())
+                voisins.Add(zones[pos.x+1][pos.y]);
 
         voisins.Add(zone);
         return voisins;

@@ -51,7 +51,7 @@ namespace Controller
                 if (hit.collider != null)
                 {
                     print(hit.collider.name);
-                    if (hit.collider.name != "Card(Clone)(Clone)")
+                    if (hit.collider.name == "ZoneNormal(Clone)(Clone)")
                     {
                         ZoneController zc = hit.collider.GetComponent<ZoneController>();
                         Zone zone = zc.GetZone();
@@ -61,12 +61,12 @@ namespace Controller
 
                             if (listZones.Contains(zone) && player.canAct() && zone != player.getZone())
                             {
+                                
+                                float tileSize = GridController.tileSize;
+                                transform.localPosition = zc.LocalPosPawn();
+                                initPos = transform.localPosition;
                                 player.movePlayer(zone);
                                 player.addAction();
-                                float tileSize = GridController.tileSize;
-                                transform.localPosition = new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f, 
-                                                                    tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f,100);
-                                initPos = transform.localPosition;
                             }
                             else
                             {
@@ -86,7 +86,8 @@ namespace Controller
                             } else
                                 print("Mouvement interdit");
                         }
-                    }
+                    }else
+                        transform.localPosition = initPos;
                 }
                 else
                 {

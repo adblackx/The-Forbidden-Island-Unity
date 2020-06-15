@@ -98,6 +98,29 @@ public class ZoneController : MonoBehaviour
     {
         //print("rerer");
     }
+
+    public Vector3 LocalPosPawn()
+    {
+        int res = 0;
+        foreach (Player p in modele.GetListPlayers())
+            if (p.getZone() == zone)
+                res++;
+        switch (res)
+        {
+            case 0:
+                return new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f, 
+                    tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f,100);
+            case 1:
+                return new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f*3, 
+                    tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f,100);
+            case 2:
+                return new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f, 
+                    tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f*3,100);
+            default:
+                return new Vector3(-tileSize*3  + zone.getX()*tileSize + tileSize*0.25f*3, 
+                    tileSize*3 - (zone.getY())*tileSize - tileSize*0.25f*3,100);
+        }
+    }
     
     public void OnMouseDown()
     {
