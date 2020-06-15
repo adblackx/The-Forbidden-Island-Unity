@@ -103,6 +103,7 @@ public class Island
         for(int i = 0; i < 15; i++){
             tasCarteInnondation.Add(new Zone(Etat.EtatName.Normale, new Position(0,0), Artefacts.ArtefactsName.None));
         }
+        Shuffle(tasCarteInnondation);
        // Collections.shuffle(tasCarteInnondation); //Pour mélanger
     }
     
@@ -156,6 +157,15 @@ public class Island
         tab[0] = i;
         tab[1] = j;
         return tab;
+    }
+
+    public List<Zone> GetRandomSafeZone(int nbZone)
+    {
+        List<Zone> listZones = new List<Zone>();
+        for (int i = 0; i < nbZone; i++)
+            listZones.Add(tasCarteInnondation[i]);   
+        Shuffle(tasCarteInnondation);
+        return listZones;
     }
 
     /**
