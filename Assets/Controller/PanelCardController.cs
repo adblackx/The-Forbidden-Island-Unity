@@ -41,26 +41,39 @@ public class PanelCardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < p.getCards().Count; i++)
+        for (int i = 0; i <5; i++)
         {
-            if (i < 5)
+            if (i < p.getCards().Count)
             {
                 Tfi.TresorCard.TresorCardName c = p.getCards()[i];
                 Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(c));
                 Transform transformOfCard = listCard[i].GetComponent<Transform>().Find("CardObject");
                 transformOfCard.GetComponent<Image>().sprite = sprite;
                 listCard[i].GetComponent<CardController>().SetCardName(c);
-
+            }
+            else if(i<5)
+            {
+                Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(Tfi.TresorCard.TresorCardName.Empty));
+                Transform transformOfCard = listCard[i ].GetComponent<Transform>().Find("CardObject");
+                transformOfCard.GetComponent<Image>().sprite = sprite;
+                listCard[i ].GetComponent<CardController>().SetCardName(Tfi.TresorCard.TresorCardName.Empty);
             }
         }
 
-        if (p.getCards().Count < 5)
+       /* for (int i = p.getCards().Count; i < 5; i++)
+        {
+            Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(Tfi.TresorCard.TresorCardName.Empty));
+            Transform transformOfCard = listCard[i ].GetComponent<Transform>().Find("CardObject");
+            transformOfCard.GetComponent<Image>().sprite = sprite;
+            listCard[i ].GetComponent<CardController>().SetCardName(Tfi.TresorCard.TresorCardName.Empty);
+        }*/
+        /*if (p.getCards().Count < 5)
         {
             Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(Tfi.TresorCard.TresorCardName.Empty));
             Transform transformOfCard = listCard[p.getCards().Count ].GetComponent<Transform>().Find("CardObject");
             transformOfCard.GetComponent<Image>().sprite = sprite;
             listCard[p.getCards().Count ].GetComponent<CardController>().SetCardName(Tfi.TresorCard.TresorCardName.Empty);
-        }
+        }*/
         
        // print(p.getCards().Count);    
 
