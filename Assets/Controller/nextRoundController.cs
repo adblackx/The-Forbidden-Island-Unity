@@ -6,11 +6,12 @@ public class nextRoundController : MonoBehaviour
 {
     private Island modele;
     PanelButtonController pbc ;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         pbc =  GameObject.Find("Panel(Canvas)").transform.Find("PanelAllButtons").GetComponent<PanelButtonController>();
+        transform.GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
