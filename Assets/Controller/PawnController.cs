@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Tfi;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Controller
 {
@@ -17,7 +18,18 @@ namespace Controller
             initPos = transform.localPosition;
             initPos = new Vector3(initPos.x, initPos.y, -1);
         }
-        
+
+
+        private void Update()
+        {
+            if (player.getCards().Count > 5 && DiscardController.player == null)
+            {
+                DiscardController.player = this.player;
+                SceneManager.LoadSceneAsync("Discard", LoadSceneMode.Additive);
+            }
+            
+            Debug.Log(player.toString() + " size : " + this.player.getCards().Count);
+        }
 
         public void OnDrag(PointerEventData eventData)
         {
