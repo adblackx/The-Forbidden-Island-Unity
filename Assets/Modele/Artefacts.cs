@@ -24,6 +24,22 @@ namespace Tfi
             }
         }
         
+        public static String getSpritePath(ArtefactsName etat){
+
+            switch(etat) {
+                case ArtefactsName.Air:
+                    return "Image/vent";
+                case ArtefactsName.Eau:
+                    return "Image/eau";
+                case ArtefactsName.Feu:
+                    return "Image/feu";
+                case ArtefactsName.Terre:
+                    return "Image/terre";
+                default:
+                    return "Image/None";
+            }
+        }
+        
     }
 
     
