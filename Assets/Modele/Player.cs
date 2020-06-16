@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Controller;
 using UnityEngine;
@@ -75,25 +76,33 @@ namespace Tfi
      */
     public virtual void searchKey(List<TresorCard.TresorCardName> tas, List<TresorCard.TresorCardName> defausse, Island island)
     {
-        if (tas.Count == 0)
+        for (int i = 0; i < 2; i++)
         {
-            Island.Shuffle(defausse);
-            tas.AddRange(defausse);
-            defausse.Clear();
+            Debug.Log("add : " + i);
+            if (tas.Count == 0)
+            {
+                Island.Shuffle(defausse);
+                tas.AddRange(defausse);
+                defausse.Clear();
+            }
+
+            TresorCard.TresorCardName card = tas[0];
+
+            if (card == TresorCard.TresorCardName.RisingWater)
+            {
+                Console.WriteLine(TresorCard.ToString(card));
+                island.risingWater();
+                defausse.Add(card);
+                tas.Remove(card);
+            }
+            else
+            {
+                this.playerCards.Insert(0, card);
+                Console.WriteLine(TresorCard.ToString(card));
+                tas.Remove(card);
+            }
         }
 
-        TresorCard.TresorCardName card = tas[0];
-
-    if(card == TresorCard.TresorCardName.RisingWater) {
-            Console.WriteLine(TresorCard.ToString(card));
-            island.risingWater();
-            defausse.Add(card);
-            tas.Remove(card);
-        }else{
-            this.playerCards.Insert(0,card);
-            Console.WriteLine(TresorCard.ToString(card));
-            tas.Remove(card);
-        }
 
         /**Situation où il est facile de prendre un artefact feu**/
         /*this.playerCards.add(0,TresorCard.clef_feu);
@@ -162,9 +171,11 @@ namespace Tfi
      */
     public bool removeCard(TresorCard.TresorCardName card){
         for(int i = 0; i < this.playerCards.Count; i++){
-            if(card == playerCards[i]){
+            if(card.Equals(playerCards[i]))
+            {
+                Debug.Log(i);
                 playerCards.RemoveAt(i);
-                return  true;
+                return true;
             }
         }
         return false;

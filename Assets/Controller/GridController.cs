@@ -13,7 +13,7 @@ public class GridController : MonoBehaviour
     private int nbColonnes=6;
     public static float tileSize = 150f; // taille des prefabs
     private Island modele;
-    //public GameObject Panel;
+//public GameObject Panel;
 
     
     // Start is called before the first frame update
