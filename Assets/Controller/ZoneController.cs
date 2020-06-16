@@ -57,7 +57,15 @@ public class ZoneController : MonoBehaviour
             img = GetComponent<Image>();
             img.sprite = sprite;
         }
+        
+        Artefacts.ArtefactsName a = zone.getArtefacts();
+        if(a != Artefacts.ArtefactsName.None)
+        transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(Artefacts.getSpritePath(a));
+        else
+        {
+            transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(Etat.getSpritePath(etat));
 
+        }
 
         /*if (Input.GetMouseButtonDown(0))
         { // finalement inutile grâce au boxcollider
