@@ -21,7 +21,7 @@ public class PanelController : MonoBehaviour
         print(modele);
         int lenght = modele.GetListPlayers().Count;
         panelTab = new GameObject[lenght];
-        for (int i = 0; i < lenght ; i++)
+        for (int i = lenght-1; i >= 0 ; i--)
         {
             GameObject panel = (GameObject)Instantiate(pane, transform);
             panel.GetComponent<PanelCardController>().setPlayer(modele.GetListPlayers()[i]);

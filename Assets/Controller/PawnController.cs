@@ -63,9 +63,9 @@ namespace Controller
                             {
                                 
                                 float tileSize = GridController.tileSize;
-                                transform.localPosition = zc.LocalPosPawn();
-                                initPos = transform.localPosition;
-                                player.movePlayer(zone);
+                                /*transform.localPosition = zc.LocalPosPawn();
+                                initPos = transform.localPosition;*/
+                                player.movePlayer(zone, zc);
                                 player.addAction();
                             }
                             else
@@ -79,7 +79,7 @@ namespace Controller
                             Player navigateur = modele.getRoundOf();
                             List<Zone> listZones = Navigateur.zonesReachableNavigateur(modele, player.getZone().getPosition());
                             if (listZones.Contains(zone) && navigateur.canAct() && zone != player.getZone()) {
-                                player.movePlayer(zone); // on bouge l'autre joueur
+                                player.movePlayer(zone, zc); // on bouge l'autre joueur
                                 navigateur.addAction(); // on incremente l'action du navigateur
                                 
 
@@ -99,11 +99,20 @@ namespace Controller
 
 
         }
+
+        public void movePawn(ZoneController zc)
+        {
+            transform.localPosition = zc.LocalPosPawn();
+            initPos = transform.localPosition;
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y,-1);
+
+        }
         
 
         public void SetPlayer(Player player)
         {
             this.player = player;
+            player.setPawnContrller(this);
         }
     }
 }

@@ -53,7 +53,16 @@ public class PanelCardController : MonoBehaviour
 
             }
         }
-       // print(p.getCards().Count);
+
+        if (p.getCards().Count < 5)
+        {
+            Sprite sprite =  Resources.Load<Sprite>(Tfi.TresorCard.getSpritePath(Tfi.TresorCard.TresorCardName.Empty));
+            Transform transformOfCard = listCard[p.getCards().Count ].GetComponent<Transform>().Find("CardObject");
+            transformOfCard.GetComponent<Image>().sprite = sprite;
+            listCard[p.getCards().Count ].GetComponent<CardController>().SetCardName(Tfi.TresorCard.TresorCardName.Empty);
+        }
+        
+       // print(p.getCards().Count);    
 
     }
 

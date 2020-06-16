@@ -110,10 +110,30 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
                 print(hit.collider.name);
                 if (hit.collider.name == "ZoneNormal(Clone)(Clone)")
                 {
-                    //print(hit.collider.GetComponent<ZoneController>().GetZone().getPosition().ToString()); // ici je recupere un composant de la zaone
                     ZoneController zc = hit.collider.GetComponent<ZoneController>();
                     zc.onDropOn();
                     zc.onDropOnCard(cardName);
+
+                    if (cardName == TresorCard.TresorCardName.Sandbag)
+                    {
+                        if (zc.GetZone().getEtat() == Etat.EtatName.Inondee)
+                        {
+                            zc.GetZone().setEtat(Etat.EtatName.Normale);
+                            //TODO GERER ICI LE SANDBAG, JE LE DEFAUSSE PAS JE LE LAISSE LA
+                            this.p.defausseCard(cardName);
+                        }
+                    }
+                    else if (cardName == TresorCard.TresorCardName.Helicopter)
+                    {
+                        this.p.movePlayer(zc.GetZone(), zc);
+                        
+                        
+                        
+                        this.p.defausseCard(cardName);
+                        //TODO GERER ICI helicopter
+                    }
+                    //print(hit.collider.GetComponent<ZoneController>().GetZone().getPosition().ToString()); // ici je recupere un composant de la zaone
+
                     // il suffit alors de faire ce que tu as à faire...
                 }
                     
@@ -128,19 +148,21 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
              {
                  print(hit.collider.name);
                  print("CARTE DONENEEEE");
-                 PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
-                 p.setToInitPos(); // je replace le panel à sa position initial après le drop
 
-                 //p.transform = p.initPos;
-                 /* pos.localPosition = new Vector3(pos.localPosition.x,
-                      0 ,
-                      pos.localPosition.z );*/
+                PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
+                CardController cc = hit.collider.transform.GetComponent<CardController>();
+                exchangeCard(cc, p);
+                
+                //p.transform = p.initPos;
+                /* pos.localPosition = new Vector3(pos.localPosition.x,
+                     0 ,
+                     pos.localPosition.z );*/
 
 
-                 // pos = hit.collider.transform.parent.GetComponent<PanelCardController>();
+                // pos = hit.collider.transform.parent.GetComponent<PanelCardController>();
 
-                 /*PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
-                 print( p.p.ToString());    */
+                /*PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
+                print( p.p.ToString());    */
              }
 
              if (pbc != null)
@@ -148,12 +170,25 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
                  pbc.showPanel();
              }
 
+             transform.position = new Vector3(transform.position.x, transform.position.y, -5); // important pour detecter la zone
 
             transform.localPosition = initPos;
             
         }
         
        
+    }
+
+    private void exchangeCard(CardController cc, PanelCardController p)
+    {
+        if (cardName != TresorCard.TresorCardName.Empty ||
+            cardName != TresorCard.TresorCardName.Helicopter ||
+            cardName != TresorCard.TresorCardName.Sandbag)
+        {
+            p.setToInitPos(); // je replace le panel à sa position initial après le drop
+            this.p.giveCard(cardName, cc.p);
+
+        }
     }
     
     public void OnMouseDown()

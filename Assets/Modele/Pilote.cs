@@ -38,10 +38,10 @@ namespace Tfi
         /**
      * @param z la zone ou le joueur
      */
-        public override void movePlayer(Zone z) {
+        public override void movePlayer(Zone z, ZoneController zc) {
             if(isFlying(z))
                 this.canFly = false; //Si le mouvement est distant on empeche d'utiliser une seconde fois le vol
-            base.movePlayer(z);
+            base.movePlayer(z,zc);
         }
 
         /**On le réécrit pour remettre l'attribut canFly à 0 pour le prochain tour**/

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Controller;
 using UnityEngine;
 
 namespace Tfi
@@ -14,6 +15,7 @@ namespace Tfi
         protected List<TresorCard.TresorCardName> playerCards = new List<TresorCard.TresorCardName>();
         public static int nbActionsRestant;
         protected Island modele;
+        protected PawnController pc;
         String canvasPath;
 
         public Player(Zone zone, String canvasPath, Island modele){
@@ -21,14 +23,20 @@ namespace Tfi
             this.canvasPath = canvasPath;
             this.modele = modele;
         }
-        
+
+
+        public virtual void setPawnContrller(PawnController pc)
+        {
+            this.pc = pc;
+        }
         /**
      * Deplace le joueur
      * @param z la zone ou le joueur
      */
-    public virtual void movePlayer(Zone z){
-        this.zone = z;
-    }
+    public virtual void movePlayer(Zone z, ZoneController zcCible){
+            pc.movePawn(zcCible);
+            this.zone = z;
+        }
 
     /**
      * Depalce le joeur
