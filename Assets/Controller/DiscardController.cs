@@ -45,7 +45,7 @@ public class DiscardController : MonoBehaviour
     public void ConstructPrefabs()
     {
         MyText = this.gameObject.GetComponent<Transform>().Find("message");
-        int nbCardToDiscard = player.getCards().Count - cardToDiscard.Count;
+        int nbCardToDiscard = player.getCards().Count - cardToDiscard.Count - 5;
         MyText.GetComponent<Text>().text = (player.toString() + ": veuillez defausser " + nbCardToDiscard + " cartes");
         for (int i = 0; i < player.getCards().Count; i++)
         {
@@ -54,7 +54,10 @@ public class DiscardController : MonoBehaviour
             GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/CardToDiscard")); // on chope le prefab ici
             GameObject card = (GameObject)Instantiate(refr, transform);
             card.GetComponent<Image>().sprite = sprite;
-            card.transform.localPosition =new Vector3(-200 + i * 150 ,0, -2f);
+            if(player.getCards().Count == 7)
+                card.transform.localPosition =new Vector3(-475 + i * 165 ,0, -3f);
+            else
+                card.transform.localPosition =new Vector3(-430 + i * 165 ,0, -3f);
             card.GetComponent<DiscardCard>().SetCard(player.getCards()[i],i);
             Destroy(refr);
         }

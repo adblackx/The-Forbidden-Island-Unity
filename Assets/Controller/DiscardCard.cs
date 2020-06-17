@@ -41,14 +41,18 @@ namespace Controller
             {
                 transform.GetComponent<Image>().color = Color.white;
                 DiscardController.cardToDiscard.Remove(indice);
-                int nbCardToDiscard = DiscardController.player.getCards().Count - DiscardController.cardToDiscard.Count;
+                int nbCardToDiscard = DiscardController.player.getCards().Count - DiscardController.cardToDiscard.Count - 5;
+                if (nbCardToDiscard < 0)
+                    nbCardToDiscard = 0;
                 DiscardController.MyText.GetComponent<Text>().text = (DiscardController.player.toString() + ": veuillez defausser " + nbCardToDiscard + " cartes");
             }
             else
             {
                 transform.GetComponent<Image>().color = Color.grey;
                 DiscardController.cardToDiscard.Add(indice);
-                int nbCardToDiscard = DiscardController.player.getCards().Count - DiscardController.cardToDiscard.Count;
+                int nbCardToDiscard = DiscardController.player.getCards().Count - DiscardController.cardToDiscard.Count - 5;
+                if (nbCardToDiscard < 0)
+                    nbCardToDiscard = 0;
                 DiscardController.MyText.GetComponent<Text>().text = (DiscardController.player.toString() + ": veuillez defausser " + nbCardToDiscard + " cartes");
             }
             
