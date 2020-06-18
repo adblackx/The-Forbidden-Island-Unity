@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 20865515}
   - component: {fileID: 20865514}
   - component: {fileID: 20865513}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: aiguille
   m_TagString: Untagged
   m_Icon: {fileID: 0}

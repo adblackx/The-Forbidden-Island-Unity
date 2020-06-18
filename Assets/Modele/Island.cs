@@ -419,4 +419,8 @@ public class Island
     }
 
 
+    public int GetSeaLevel()
+    {
+        return seaLevel - 1;
+    }
 }

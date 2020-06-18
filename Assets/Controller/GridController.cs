@@ -5,6 +5,7 @@ using Controller;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
+using UnityEditor;
 using UnityEngine.UI;
 
 public class GridController : MonoBehaviour 
@@ -13,6 +14,7 @@ public class GridController : MonoBehaviour
     private int nbColonnes=6;
     public static float tileSize = 150f; // taille des prefabs
     private Island modele;
+    private int displayedSeaLevel = 0;
 //public GameObject Panel;
 
     
@@ -25,6 +27,20 @@ public class GridController : MonoBehaviour
            float h = canvas.GetComponent<RectTransform>().rect.height; // exemple pour obtenir la taille du canvas contenant la grille
            //print(h);
            
+           
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        if (displayedSeaLevel != modele.GetSeaLevel())
+        {
+            GameObject aiguille = GameObject.Find("aiguille");
+            aiguille.transform.Rotate(Vector3.forward,-30);
+            displayedSeaLevel = modele.GetSeaLevel();
+            print("seaLevel: " + modele.GetSeaLevel());
+        }
+        
     }
 
     private void GenerateGrid()
@@ -80,21 +96,13 @@ public class GridController : MonoBehaviour
         hand = GameObject.Find("PanelTresor");
         print("trouve "+hand.name);
         hand.GetComponent<PanelTresorController>().SetModele(modele);
-
-        
     }
     
      public void buttonNextRound(){ // endroit provisoire ici on dépalcera dans un endroit ou on gérera tous les boutons si on veut
          modele.nextRound();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void addPlayerPrefabs(Player player)
+     public void addPlayerPrefabs(Player player)
     {
         GameObject prefabs = (GameObject) Instantiate(Resources.Load("Prefabs/Pawn"+player.toString()));
         GameObject pawn = (GameObject)Instantiate(prefabs, transform);

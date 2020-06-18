@@ -27,8 +27,7 @@ namespace Controller
                 DiscardController.player = this.player;
                 SceneManager.LoadSceneAsync("Scenes/Discard", LoadSceneMode.Additive);
             }
-            
-            Debug.Log(player.toString() + " size : " + this.player.getCards().Count);
+
         }
 
         public void OnDrag(PointerEventData eventData)
