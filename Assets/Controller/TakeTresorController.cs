@@ -41,6 +41,7 @@ public class TakeTresorController : MonoBehaviour
                 print("trouve "+g.name);
                 Texture sprite =  Resources.Load<Texture>(Artefacts.getSpritePath(artefacts));
                 g.GetComponent<RawImage>().texture = sprite;
+                g.GetComponent<RawImage>().material = null;
             }
                 
         }
