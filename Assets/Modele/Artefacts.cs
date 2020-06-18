@@ -40,6 +40,22 @@ namespace Tfi
             }
         }
         
+        public static String toString(ArtefactsName etat){
+
+            switch(etat) {
+                case ArtefactsName.Air:
+                    return "air";
+                case ArtefactsName.Eau:
+                    return "eau";
+                case ArtefactsName.Feu:
+                    return "feu";
+                case ArtefactsName.Terre:
+                    return "terre";
+                default:
+                    return "Image/None";
+            }
+        }
+        
     }
 
     

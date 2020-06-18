@@ -50,7 +50,7 @@ namespace Tfi
     /**
      * Prendre un artefact de l'ile
      */
-    public void takeArtefact(){
+    public bool takeArtefact(){
         int compteur = 0;
         Artefacts.ArtefactsName artefacts = zone.getArtefacts();
         foreach(TresorCard.TresorCardName t in playerCards)
@@ -61,8 +61,10 @@ namespace Tfi
             modele.getListArtefacts().Add(artefacts);
             for (int i = 0; i < 4; i++)
                 this.defausseCard(Artefacts.getKeyAssociated(artefacts));
+            return true;
         }else{
             Console.WriteLine("Not allow here !");
+            return false;
         }
     }
 

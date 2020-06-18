@@ -88,6 +88,10 @@ public class GridController : MonoBehaviour
         GameObject hand = GameObject.Find("nextRound");
         print("trouve "+hand.name);
         hand.GetComponent<nextRoundController>().setModele(modele);
+        
+        hand = GameObject.Find("TakeTresor");
+        print("trouve "+hand.name);
+        hand.GetComponent<TakeTresorController>().setModele(modele);
 
         hand = GameObject.Find("Panel(Canvas)");
         print("trouve "+hand.name);
