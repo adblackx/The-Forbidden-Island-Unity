@@ -25,7 +25,7 @@ namespace Controller
             if (player.getCards().Count > 5 && DiscardController.player == null)
             {
                 DiscardController.player = this.player;
-                SceneManager.LoadSceneAsync("Scenes/Discard", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync("Discard", LoadSceneMode.Additive);
             }
 
         }
