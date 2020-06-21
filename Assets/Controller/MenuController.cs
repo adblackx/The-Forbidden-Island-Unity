@@ -19,7 +19,7 @@ public class MenuController : MonoBehaviour
 
     public void onClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("menuSelection");
     }
     
 }

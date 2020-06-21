@@ -46,7 +46,7 @@ public class GridController : MonoBehaviour
     private void GenerateGrid()
     {
         print("instance modele");
-        modele = new Island();
+        modele =mainMenuController.modele;
         Zone [][] zones = modele.getZone();
         
         GameObject refr = (GameObject)Instantiate(Resources.Load("Prefabs/ZoneNormal")); // on chope le prefab ici
@@ -72,8 +72,16 @@ public class GridController : MonoBehaviour
         }
         
         Destroy(refr);
-        add4Player();
+        //add4Player();
+
+        foreach (Player pla in modele.GetListPlayers())
+        {
+            addPlayerPrefabs(pla);
+        }
+        
         modele.setRoundOf(modele.GetListPlayers()[0]);
+        
+        
         
         float gridW= tileSize*nbLignes;
         float gridH= tileSize*nbColonnes;
@@ -97,9 +105,10 @@ public class GridController : MonoBehaviour
         print("trouve "+hand.name);
         hand.GetComponent<PanelController>().setModele(modele);
         
-        hand = GameObject.Find("PanelTresor");
+        // code qui sert a rien car Mister Romain a refait un travail déjà fait mdr
+        /*hand = GameObject.Find("PanelTresor");
         print("trouve "+hand.name);
-        hand.GetComponent<PanelTresorController>().SetModele(modele);
+        hand.GetComponent<PanelTresorController>().SetModele(modele);*/
     }
     
      public void buttonNextRound(){ // endroit provisoire ici on dépalcera dans un endroit ou on gérera tous les boutons si on veut

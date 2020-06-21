@@ -32,6 +32,7 @@ public class PanelButtonController : MonoBehaviour
         print("click p0");
         hideExcept(0);
         panelActive = 0;
+        panelTab[panelActive].transform.SetAsLastSibling();
 
     }
     public void onButtonClickP1()
@@ -39,18 +40,24 @@ public class PanelButtonController : MonoBehaviour
         print("click p1");
         hideExcept(1);
         panelActive = 1;
+        panelTab[panelActive].transform.SetAsLastSibling();
+
     }
     public void onButtonClickP2()
     {
         print("click p2");
         hideExcept(2);
         panelActive = 2;
+        panelTab[panelActive].transform.SetAsLastSibling();
+
     }
     public void onButtonClickP3()
     {
         print("click p3");
         hideExcept(3);
         panelActive = 3;
+        panelTab[panelActive].transform.SetAsLastSibling();
+
     }
     
     public void setPanelController(GameObject[] panelTab)

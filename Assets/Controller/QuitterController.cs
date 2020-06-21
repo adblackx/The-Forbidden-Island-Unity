@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Controller;
 public class QuitterController : MonoBehaviour
 {
     // Start is called before the first frame update

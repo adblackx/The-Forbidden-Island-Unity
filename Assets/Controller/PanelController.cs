@@ -46,7 +46,25 @@ public class PanelController : MonoBehaviour
         // TODO CACHER LES BOUTONS EN TROP QUAND ON AURA MOINS DE 4 JOUEURS, EASY A FAIRE MAIS JE VEUXC ME REPOSER WOLA ++
         
         
+        
         GameObject.Find("PanelAllButtons").GetComponent<PanelButtonController>().setPanelController(panelTab);
+        
+        Transform t = GameObject.Find("PanelAllButtons").GetComponent<Transform>();
+
+        int compteur=0;
+        foreach (Transform eachChild in t)
+        {
+            print(eachChild.name);
+            if (compteur < 4-lenght)
+            {
+                //Destroy(eachChild.GetComponent<GameObject>());
+                Destroy(eachChild.gameObject);
+                print("ENFAAAAAAAAAAAAAAAAAAAAAAANNNNNNNNNNNNNNNNTTTT " + eachChild.name);
+                
+            }
+            
+            compteur++;
+        }
 
         Destroy(pane);
         

@@ -32,7 +32,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
         
     public void OnDrag(PointerEventData eventData)
     {
-        
+        transform.SetAsLastSibling();
         transform.position = new Vector3(transform.position.x, transform.position.y, 1); // important pour detecter la zone
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position,  Vector2.up);
@@ -79,8 +79,8 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+            
+            transform.position = new Vector3(transform.position.x, transform.position.y, -9);
             initPos = new Vector3(initPos.x, initPos.y, -5);
 
         }
