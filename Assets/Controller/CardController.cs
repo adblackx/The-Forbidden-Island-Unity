@@ -127,8 +127,6 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
                     {
                         this.p.movePlayer(zc.GetZone(), zc);
                         
-                        
-                        
                         this.p.defausseCard(cardName);
                         //TODO GERER ICI helicopter
                     }
@@ -148,9 +146,12 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
              {
                  print(hit.collider.name);
                  print("CARTE DONENEEEE");
+                 
 
                 PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
                 CardController cc = hit.collider.transform.GetComponent<CardController>();
+                
+                if(cc.cardName != TresorCard.TresorCardName.Empty)
                 exchangeCard(cc, p);
                 
                 //p.transform = p.initPos;
