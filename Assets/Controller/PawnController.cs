@@ -22,7 +22,7 @@ namespace Controller
 
         private void Update()
         {
-            if (player.getCards().Count > 5 && DiscardController.player == null)
+            if (player.getCards().Count > 5 && DiscardController.player == null && !GridController.endIsDisplay)
             {
                 DiscardController.player = this.player;
                 SceneManager.LoadSceneAsync("Discard", LoadSceneMode.Additive);
