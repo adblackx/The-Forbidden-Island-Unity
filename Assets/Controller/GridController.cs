@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Tfi;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GridController : MonoBehaviour 
@@ -15,6 +16,8 @@ public class GridController : MonoBehaviour
     public static float tileSize = 150f; // taille des prefabs
     private Island modele;
     private int displayedSeaLevel = 0;
+
+    public static bool endIsDisplay = false;
 //public GameObject Panel;
 
     
@@ -27,7 +30,6 @@ public class GridController : MonoBehaviour
            float h = canvas.GetComponent<RectTransform>().rect.height; // exemple pour obtenir la taille du canvas contenant la grille
            //print(h);
            
-           
     }
     
     // Update is called once per frame
@@ -39,6 +41,19 @@ public class GridController : MonoBehaviour
             aiguille.transform.Rotate(Vector3.forward,-30);
             displayedSeaLevel = modele.GetSeaLevel();
             print("seaLevel: " + modele.GetSeaLevel());
+        }
+        if (modele.Win() && !endIsDisplay)
+        {
+            endIsDisplay = true;
+            EndGameController.message = "Vous avez gagnee";
+            SceneManager.LoadSceneAsync("EndGame", LoadSceneMode.Additive);
+        }
+
+        if (modele.Lose() && !endIsDisplay)
+        {
+            endIsDisplay = true;
+            EndGameController.message = "Vous avez perdu";
+            SceneManager.LoadSceneAsync("EndGame", LoadSceneMode.Additive);
         }
         
     }
