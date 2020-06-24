@@ -25,6 +25,7 @@ public class PanelController : MonoBehaviour
         {
             GameObject panel = (GameObject)Instantiate(pane, transform);
             panel.GetComponent<PanelCardController>().setPlayer(modele.GetListPlayers()[i]);
+            panel.GetComponent<PanelCardController>().SetModele(modele);
             panel.GetComponent<PanelCardController>().setInitPos( new Vector3(0,214f ,0));
             panel.transform.localPosition = new Vector3(0,214f ,0);
             

@@ -132,8 +132,14 @@ namespace Tfi
     }
 
     /**Réinitialise le compte action pour le prochain joueur**/
-    public void resetNbActionRestant(){
+    public void resetNbActionRestant()
+    {
         nbActionsRestant = 0;
+    }
+
+    public int getActions()
+    {
+        return nbActionsRestant;
     }
 
 
