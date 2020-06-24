@@ -63,9 +63,15 @@ public class ZoneController : MonoBehaviour
         transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(Artefacts.getSpritePath(a));
         else
         {
-            transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(Etat.getSpritePath(etat));
+            transform.GetChild(0).transform.GetComponent<Image>().enabled = false;
 
         }
+
+        if (modele.getRoundOf().zonesSafeToMove().Contains(zone))
+        {
+            transform.GetChild(1).transform.GetComponent<Image>().enabled = true;
+        }else
+            transform.GetChild(1).transform.GetComponent<Image>().enabled = false;
 
         /*if (Input.GetMouseButtonDown(0))
         { // finalement inutile grâce au boxcollider
