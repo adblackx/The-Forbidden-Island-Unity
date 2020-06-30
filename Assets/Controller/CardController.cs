@@ -151,7 +151,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
                 PanelCardController p = hit.collider.transform.parent.GetComponent<PanelCardController>();
                 CardController cc = hit.collider.transform.GetComponent<CardController>();
                 
-                if(cc.cardName != TresorCard.TresorCardName.Empty)
+                if(this.cardName != TresorCard.TresorCardName.Empty && p.p != this.p)
                 exchangeCard(cc, p);
                 
                 //p.transform = p.initPos;
@@ -182,6 +182,7 @@ public class CardController: MonoBehaviour, IDragHandler, IEndDragHandler
 
     private void exchangeCard(CardController cc, PanelCardController p)
     {
+        print("SDJFNVSDOJNFDSOJLNFSDNKOF");
         if (cardName != TresorCard.TresorCardName.Empty ||
             cardName != TresorCard.TresorCardName.Helicopter ||
             cardName != TresorCard.TresorCardName.Sandbag)
