@@ -42,6 +42,12 @@ public class ZoneController : MonoBehaviour
     {
         initPos = transform.localPosition;
         initPos = new Vector3(initPos.x, initPos.y, 0);
+        
+        /*if (zone.isHeliport())
+            
+            transform.GetChild(2).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/heliport");
+        else
+            transform.GetChild(2).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(Etat.getSpritePath(etat));*/
 
 
     }
@@ -51,11 +57,16 @@ public class ZoneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (zone.getEtat() != etat){ // ici je teste si on a un changement d'état, puis si c'est le cas, alors je change d'état, et je met à jour mon sprite
             etat = zone.getEtat();
             sprite = Resources.Load<Sprite>(Etat.getSpritePath(etat));
             img = GetComponent<Image>();
             img.sprite = sprite;
+            
+
+
+            
         }
         
         Artefacts.ArtefactsName a = zone.getArtefacts();
@@ -72,6 +83,13 @@ public class ZoneController : MonoBehaviour
             transform.GetChild(1).transform.GetComponent<Image>().enabled = true;
         }else
             transform.GetChild(1).transform.GetComponent<Image>().enabled = false;
+
+
+        if (zone.isHeliport())
+            
+            transform.GetChild(2).transform.GetComponent<Image>().enabled =true ;
+        else
+            transform.GetChild(2).transform.GetComponent<Image>().enabled =false ;
 
         /*if (Input.GetMouseButtonDown(0))
         { // finalement inutile grâce au boxcollider

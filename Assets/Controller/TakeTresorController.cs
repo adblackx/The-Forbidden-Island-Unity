@@ -28,8 +28,8 @@ public class TakeTresorController : MonoBehaviour
     {
         
         Player p = modele.getRoundOf();
-        for(int i = 0; i < 4; i++)
-            p.getCards().Add((TresorCard.TresorCardName.ClefFeu));
+        //for(int i = 0; i < 4; i++)
+           // p.getCards().Add((TresorCard.TresorCardName.ClefFeu));
         bool haveTake = false;
         if (p.canAct())
         {
